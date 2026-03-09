@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HODDER'S REVENGE OF RALPH — Bathtub No Room for Emo</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00ff41;
+    --purple: #9b00ff;
+    --slime: #7fff00;
+    --sewer: #1a2a1a;
+    --dark: #080f08;
+    --orange: #ff6a00;
+    --red: #ff003c;
+    --blue: #00c3ff;
+    --yellow: #ffe600;
+    --shell-brown: #8b6914;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: #d4f5d4;
+    font-family: 'Rajdhani', sans-serif;
+    overflow-x: hidden;
+    cursor: crosshair;
+  }
+
+  /* SEWER PIPE BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0,255,65,0.03) 60px, rgba(0,255,65,0.03) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,255,65,0.03) 60px, rgba(0,255,65,0.03) 61px),
+      radial-gradient(ellipse at 20% 50%, rgba(0,100,20,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(155,0,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,255,65,0.08) 0%, transparent 70%),
+      radial-gradient(circle at 10% 80%, rgba(155,0,255,0.2) 0%, transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(0,195,255,0.15) 0%, transparent 40%);
+    animation: breathe 6s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  .sewer-drip {
+    position: absolute;
+    top: 0;
+    width: 3px;
+    background: linear-gradient(180deg, transparent, var(--green), var(--slime));
+    border-radius: 0 0 50% 50%;
+    animation: drip linear infinite;
+    opacity: 0.6;
+  }
+
+  @keyframes drip {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.6; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .eyeball {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    border: 3px solid var(--green);
+    box-shadow: 0 0 20px var(--green);
+    animation: float 4s ease-in-out infinite;
+    overflow: hidden;
+  }
+
+  .eyeball::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: #1a0030;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px var(--purple);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+  }
+
+  .tag-raph {
+    display: inline-block;
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    color: var(--red);
+    background: rgba(255,0,60,0.1);
+    border: 2px solid var(--red);
+    padding: 0.3rem 1rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 20px var(--red);
+    animation: glitch 4s infinite;
+  }
+
+  @keyframes glitch {
+    0%, 95%, 100% { transform: translateX(0); filter: none; }
+    96% { transform: translateX(-3px); filter: hue-rotate(90deg); }
+    97% { transform: translateX(3px); filter: hue-rotate(-90deg); }
+    98% { transform: translateX(-2px); }
+    99% { transform: translateX(2px); }
+  }
+
+  h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 12vw, 9rem);
+    line-height: 0.9;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--green) 0%, var(--slime) 30%, var(--yellow) 60%, var(--orange) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(0,255,65,0.5));
+    animation: titlePulse 3s ease-in-out infinite;
+  }
+
+  @keyframes titlePulse {
+    0%, 100% { filter: drop-shadow(0 0 30px rgba(0,255,65,0.5)); }
+    50% { filter: drop-shadow(0 0 60px rgba(0,255,65,0.9)) drop-shadow(0 0 120px rgba(127,255,0,0.3)); }
+  }
+
+  .subtitle {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(1rem, 4vw, 2rem);
+    color: var(--purple);
+    text-shadow: 0 0 30px var(--purple), 0 0 60px rgba(155,0,255,0.5);
+    margin-top: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-desc {
+    max-width: 700px;
+    margin: 2rem auto 0;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: rgba(212,245,212,0.8);
+    border-left: 3px solid var(--green);
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  .commander-badges {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .badge {
+    padding: 0.8rem 1.8rem;
+    border: 2px solid;
+    border-radius: 4px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: currentColor;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .badge:hover::before { opacity: 0.1; }
+  .badge:hover { transform: translateY(-3px); box-shadow: 0 10px 30px currentColor; }
+
+  .badge-leo { border-color: var(--blue); color: var(--blue); }
+  .badge-raph { border-color: var(--red); color: var(--red); }
+
+  /* SCROLL CTA */
+  .scroll-cta {
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(212,245,212,0.4);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: fadeInUp 1s 1s both;
+  }
+
+  .scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border-right: 2px solid var(--green);
+    border-bottom: 2px solid var(--green);
+    transform: rotate(45deg);
+    animation: bounce 1.5s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50% { transform: rotate(45deg) translateY(8px); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTION GENERAL */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--green);
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 30px rgba(0,255,65,0.4);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-line {
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--green), var(--purple));
+    margin-bottom: 2.5rem;
+    border-radius: 2px;
+  }
+
+  /* DECK PITCH */
+  .pitch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pitch-card {
+    background: rgba(0,255,65,0.04);
+    border: 1px solid rgba(0,255,65,0.2);
+    border-radius: 8px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+
+  .pitch-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, var(--green), var(--purple));
+  }
+
+  .pitch-card:hover {
+    border-color: var(--green);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,255,65,0.15);
+    background: rgba(0,255,65,0.07);
+  }
+
+  .pitch-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .pitch-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    color: var(--green);
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .pitch-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(212,245,212,0.75);
+  }
+
+  /* COMMANDERS SECTION */
+  .commanders-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .commanders-split { grid-template-columns: 1fr; }
+  }
+
+  .commander-card {
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+
+  .commander-card:hover { transform: scale(1.02); }
+
+  .commander-leo {
+    background: linear-gradient(135deg, rgba(0,195,255,0.08), rgba(0,100,200,0.12));
+    border: 2px solid rgba(0,195,255,0.3);
+  }
+
+  .commander-leo::after {
+    content: 'LEO';
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: rgba(0,195,255,0.05);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .commander-raph {
+    background: linear-gradient(135deg, rgba(255,0,60,0.08), rgba(150,0,30,0.12));
+    border: 2px solid rgba(255,0,60,0.3);
+  }
+
+  .commander-raph::after {
+    content: 'RAPH';
+    position: absolute;
+    right: -20px; top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    color: rgba(255,0,60,0.05);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .commander-card .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .commander-leo .name { color: var(--blue); }
+  .commander-raph .name { color: var(--red); }
+
+  .commander-card .role {
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 1.2rem;
+  }
+
+  .commander-card .flavor {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(212,245,212,0.8);
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    background: rgba(0,0,0,0.3);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  /* CARD LIST TABLE */
+  .store-section {
+    margin-bottom: 4rem;
+  }
+
+  .store-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0,255,65,0.2);
+  }
+
+  .store-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    padding: 0.3rem 1rem;
+    border-radius: 4px;
+    letter-spacing: 0.1em;
+  }
+
+  .store-401 { background: rgba(255,106,0,0.2); color: var(--orange); border: 1px solid var(--orange); }
+  .store-f2f { background: rgba(0,195,255,0.2); color: var(--blue); border: 1px solid var(--blue); }
+  .store-etb { background: rgba(155,0,255,0.2); color: var(--purple); border: 1px solid var(--purple); }
+  .store-ht { background: rgba(127,255,0,0.2); color: var(--slime); border: 1px solid var(--slime); }
+
+  .card-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+  }
+
+  .card-table th {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    color: rgba(212,245,212,0.5);
+    text-align: left;
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid rgba(0,255,65,0.15);
+  }
+
+  .card-table td {
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid rgba(0,255,65,0.07);
+    vertical-align: middle;
+  }
+
+  .card-table tr:hover td {
+    background: rgba(0,255,65,0.04);
+  }
+
+  .card-table a {
+    color: var(--green);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+
+  .card-table a:hover {
+    color: var(--slime);
+    text-shadow: 0 0 10px var(--green);
+  }
+
+  .price-tag {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--yellow);
+  }
+
+  .condition {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .buy-btn {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    background: rgba(0,255,65,0.1);
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    color: var(--green);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+
+  .buy-btn:hover {
+    background: var(--green);
+    color: var(--dark);
+    box-shadow: 0 0 20px var(--green);
+  }
+
+  /* TOTALS */
+  .total-bar {
+    background: rgba(0,255,65,0.06);
+    border: 1px solid rgba(0,255,65,0.25);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .total-bar .label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.1em;
+    color: rgba(212,245,212,0.6);
+  }
+
+  .total-bar .amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--yellow);
+    text-shadow: 0 0 30px rgba(255,230,0,0.5);
+  }
+
+  .total-bar .note {
+    font-size: 0.85rem;
+    color: rgba(212,245,212,0.4);
+    letter-spacing: 0.1em;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(0,255,65,0.1);
+    font-size: 0.9rem;
+    color: rgba(212,245,212,0.3);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  footer span {
+    color: var(--green);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(8,15,8,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,255,65,0.1);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    color: var(--green);
+    letter-spacing: 0.15em;
+    text-shadow: 0 0 15px rgba(0,255,65,0.5);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(212,245,212,0.6);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  /* DIVIDER */
+  .sewer-divider {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem 0;
+    color: rgba(0,255,65,0.2);
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.5em;
+    font-size: 1.2rem;
+    overflow: hidden;
+  }
+
+  .sewer-divider::before,
+  .sewer-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,255,65,0.3));
+  }
+
+  .sewer-divider::before { left: 0; }
+  .sewer-divider::after { right: 0; transform: scaleX(-1); }
+
+  /* ANIMATIONS */
+  .fade-in {
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .search-note {
+    font-size: 0.85rem;
+    color: rgba(212,245,212,0.4);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  /* CHECKLIST */
+  .check-cell {
+    width: 48px;
+    text-align: center;
+  }
+
+  .card-check {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 28px;
+    height: 28px;
+    border: 2px solid rgba(0,255,65,0.3);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.4);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .card-check:checked {
+    background: var(--green);
+    border-color: var(--green);
+    box-shadow: 0 0 12px rgba(0,255,65,0.5);
+  }
+
+  .card-check:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--dark);
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  tr.owned td {
+    opacity: 0.45;
+    text-decoration: line-through;
+    text-decoration-color: rgba(0,255,65,0.4);
+  }
+
+  tr.owned .check-cell, tr.owned td:last-child {
+    opacity: 1;
+    text-decoration: none;
+  }
+
+  .progress-bar-wrap {
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(0,255,65,0.2);
+    border-radius: 20px;
+    height: 12px;
+    overflow: hidden;
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--slime));
+    border-radius: 20px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px var(--green);
+  }
+
+  .progress-tracker {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid rgba(0,255,65,0.2);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .progress-tracker .prog-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--green);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .prog-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--yellow);
+    white-space: nowrap;
+  }
+
+  .prog-bar-container {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  .reset-btn {
+    padding: 0.4rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(255,0,60,0.4);
+    color: var(--red);
+    border-radius: 4px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .reset-btn:hover {
+    background: rgba(255,0,60,0.15);
+    border-color: var(--red);
+  }
+</style>
+</head>
+<body>
+
+<!-- DRIPPING SEWER EFFECT -->
+<script>
+  for (let i = 0; i < 12; i++) {
+    const drip = document.createElement('div');
+    drip.className = 'sewer-drip';
+    drip.style.left = Math.random() * 100 + '%';
+    drip.style.height = (30 + Math.random() * 80) + 'px';
+    drip.style.animationDuration = (3 + Math.random() * 8) + 's';
+    drip.style.animationDelay = (Math.random() * 5) + 's';
+    document.body.appendChild(drip);
+  }
+
+  const eyePositions = [{top:'15%',left:'5%'},{top:'70%',left:'92%'},{top:'40%',left:'95%'}];
+  eyePositions.forEach(pos => {
+    const eye = document.createElement('div');
+    eye.className = 'eyeball';
+    eye.style.top = pos.top;
+    eye.style.left = pos.left;
+    eye.style.animationDelay = Math.random() * 3 + 's';
+    document.body.appendChild(eye);
+  });
+</script>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🐢 Hodder's Revenge</div>
+  <ul class="nav-links">
+    <li><a href="#deck">The Deck</a></li>
+    <li><a href="#commanders">Commanders</a></li>
+    <li><a href="#buylist">Buy List</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="tag-raph">⚔️ A COMMANDER DECK BY HODDER ⚔️</div>
+  <h1>HODDER'S REVENGE<br>OF RALPH</h1>
+  <div class="subtitle">Bathtub — No Room for Emo</div>
+  <p class="hero-desc">
+    Two brothers. One battlefield. Zero chill. This is the TMNT Commander deck that turns the sewer into a war zone — token armies backed by Raphael's rage, disciplined by Leonardo's vision. Tokens on tokens. Counters on counters. 
+    Every pizza slice earned in blood. <strong>Cowabunga, motherf***er.</strong>
+  </p>
+  <div class="commander-badges">
+    <a class="badge badge-leo" href="#commanders">🗡️ Leonardo, Sewer King</a>
+    <a class="badge badge-raph" href="#commanders">🔱 Raphael, Crimson Leader</a>
+  </div>
+  <div class="scroll-cta">
+    <span>Scroll Down</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- DECK PITCH -->
+<section id="deck">
+  <div class="section-title">Why This Deck Slaps</div>
+  <div class="section-line"></div>
+  <div class="pitch-grid">
+    <div class="pitch-card">
+      <span class="pitch-icon">🐢</span>
+      <h3>Turtle Power Tokens</h3>
+      <p>Doubling Season + Parallel Lives means every token trigger doubles, then doubles again. Drop a Raphael swing and watch the board flood with Turtle tokens that hit like a truck.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="pitch-icon">⚡</span>
+      <h3>Dark Ritual Explosivity</h3>
+      <p>Dark Ritual + Food Chain gives you degenerate mana on turn 2. This isn't a slow deck. This is "I win before you realize what happened" energy backed by Underworld Breach recursion.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="pitch-icon">🍕</span>
+      <h3>Technique Stacking</h3>
+      <p>Raphael's Technique, Donatello's Technique, and New Generation's Technique stack into a value engine so disgusting it'd make Shredder rage-quit. Train your turtles. Win the game.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="pitch-icon">🔄</span>
+      <h3>Infinite Recursion Lines</h3>
+      <p>Teleportation Circle + Sword of Hearth and Home keeps your best ETB triggers firing every turn. Yuriko in the 99 means every Ninjutsu swing is a free info-gather and a gut punch.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="pitch-icon">💀</span>
+      <h3>The Ooze Wins</h3>
+      <p>Mutagen Man + The Ooze + Agatha's Soul Cauldron creates a counter-accumulation loop that turns any creature into an Ooze-powered monstrosity. Science as a weapon.</p>
+    </div>
+    <div class="pitch-card">
+      <span class="pitch-icon">🎮</span>
+      <h3>High Score, Always</h3>
+      <p>Arcade Cabinet, High Score, and Level Up give this deck a genuine video game soul — literal +1/+1 counters as points. Win the game like you're clearing the final stage.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sewer-divider">— commanders —</div>
+
+<!-- COMMANDERS -->
+<section id="commanders">
+  <div class="section-title">The Two Commanders</div>
+  <div class="section-line"></div>
+  <div class="commanders-split">
+    <div class="commander-card commander-leo">
+      <div class="name">Leonardo<br>Sewer King</div>
+      <div class="role">The Strategist · Commander · Blue/Green</div>
+      <p class="flavor">
+        Leo doesn't fight with rage — he fights with a plan. Sewer King represents the endgame: every Turtle token, every technique, every counter is one move in a 10-turn winning sequence only Leo saw coming. He's the reason your opponents are dead before they know it.
+      </p>
+      <div class="stat-row">
+        <span class="stat" style="color:var(--blue)">WUBRG Commander</span>
+        <span class="stat">Token Generator</span>
+        <span class="stat">Value Engine</span>
+      </div>
+    </div>
+    <div class="commander-card commander-raph">
+      <div class="name">Raphael<br>Crimson Leader</div>
+      <div class="role">The Berserker · Commander · Red/Green</div>
+      <p class="flavor">
+        Raph hits first and asks questions never. Crimson Leader gives every angry swing purpose: his triggers generate the cannon fodder Leo uses to close games. Pair him with Raph's Jitte and Waves of Aggression and you've got a one-turtle wrecking crew that never runs dry.
+      </p>
+      <div class="stat-row">
+        <span class="stat" style="color:var(--red)">Gruul Commander</span>
+        <span class="stat">Combat Aggressor</span>
+        <span class="stat">Token Swarm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="sewer-divider">— buy list —</div>
+
+<!-- BUY LIST -->
+<section id="buylist">
+  <div class="section-title">Cheapest Buy List</div>
+  <div class="section-line"></div>
+  <p style="color:rgba(212,245,212,0.6); margin-bottom:0.5rem;">Cards grouped by cheapest Canadian store. Search links open directly to each card. Prices are approximate — check live stock at time of purchase.</p>
+  <p class="search-note">⚠️ Live prices fluctuate. All links open store search results for each card.</p>
+
+  <div class="progress-tracker" style="margin-top:1.5rem;">
+    <div class="prog-label">🐢 Cards Owned</div>
+    <div class="prog-count"><span id="owned-count">0</span> / <span id="total-count">0</span></div>
+    <div class="prog-bar-container">
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <button class="reset-btn" onclick="resetAll()">Reset</button>
+  </div>
+
+  <!-- 401 GAMES -->
+  <div class="store-section" style="margin-top:3rem;">
+    <div class="store-header">
+      <span class="store-badge store-401">401 Games</span>
+      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">401games.ca · Toronto, ON</span>
+    </div>
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th class="check-cell">✓</th>
+          <th>Card</th>
+          <th>Est. Price</th>
+          <th>Condition</th>
+          <th>Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_Sol_Ring"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Sol_Ring" onchange="toggleCard(this,'Sol_Ring')"></td><td>Sol Ring</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Sol+Ring&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Command_Tower"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Command_Tower" onchange="toggleCard(this,'Command_Tower')"></td><td>Command Tower</td><td class="price-tag">~$1</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Command+Tower&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Arcane_Signet"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Arcane_Signet" onchange="toggleCard(this,'Arcane_Signet')"></td><td>Arcane Signet</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Arcane+Signet&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Dark_Ritual"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Dark_Ritual" onchange="toggleCard(this,'Dark_Ritual')"></td><td>Dark Ritual</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Dark+Ritual&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Brainstorm"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Brainstorm" onchange="toggleCard(this,'Brainstorm')"></td><td>Brainstorm</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Brainstorm&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Harmonize"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Harmonize" onchange="toggleCard(this,'Harmonize')"></td><td>Harmonize</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Harmonize&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Cultivate"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Cultivate" onchange="toggleCard(this,'Cultivate')"></td><td>Cultivate</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Cultivate&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Chromatic_Lantern"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Chromatic_Lantern" onchange="toggleCard(this,'Chromatic_Lantern')"></td><td>Chromatic Lantern</td><td class="price-tag">~$5</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Chromatic+Lantern&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Metallic_Mimic"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Metallic_Mimic" onchange="toggleCard(this,'Metallic_Mimic')"></td><td>Metallic Mimic</td><td class="price-tag">~$8</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Metallic+Mimic&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Teleportation_Circle"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Teleportation_Circle" onchange="toggleCard(this,'Teleportation_Circle')"></td><td>Teleportation Circle</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Teleportation+Circle&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Agatha_s_Soul_Cauldron"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Agatha_s_Soul_Cauldron" onchange="toggleCard(this,'Agatha_s_Soul_Cauldron')"></td><td>Agatha's Soul Cauldron</td><td class="price-tag">~$12</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Agatha%27s+Soul+Cauldron&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Underworld_Breach"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Underworld_Breach" onchange="toggleCard(this,'Underworld_Breach')"></td><td>Underworld Breach</td><td class="price-tag">~$18</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Underworld+Breach&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Food_Chain"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Food_Chain" onchange="toggleCard(this,'Food_Chain')"></td><td>Food Chain</td><td class="price-tag">~$45</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Food+Chain&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Yuriko__the_Tiger_s_Shadow"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Yuriko__the_Tiger_s_Shadow" onchange="toggleCard(this,'Yuriko__the_Tiger_s_Shadow')"></td><td>Yuriko, the Tiger's Shadow</td><td class="price-tag">~$15</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Yuriko+Tiger%27s+Shadow&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Doubling_Season"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Doubling_Season" onchange="toggleCard(this,'Doubling_Season')"></td><td>Doubling Season</td><td class="price-tag">~$50</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Doubling+Season&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Parallel_Lives"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Parallel_Lives" onchange="toggleCard(this,'Parallel_Lives')"></td><td>Parallel Lives</td><td class="price-tag">~$20</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Parallel+Lives&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Sword_of_Hearth_and_Home"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Sword_of_Hearth_and_Home" onchange="toggleCard(this,'Sword_of_Hearth_and_Home')"></td><td>Sword of Hearth and Home</td><td class="price-tag">~$20</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Sword+of+Hearth+and+Home&type=product" target="_blank">Search</a></td></tr>
+        <tr id="row_Commander_s_Plate"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Commander_s_Plate" onchange="toggleCard(this,'Commander_s_Plate')"></td><td>Commander's Plate</td><td class="price-tag">~$10</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.401games.ca/search?q=Commander%27s+Plate&type=product" target="_blank">Search</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FACE TO FACE -->
+  <div class="store-section" style="margin-top:3rem;">
+    <div class="store-header">
+      <span class="store-badge store-f2f">Face to Face Games</span>
+      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">facetofacegames.com</span>
+    </div>
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th class="check-cell">✓</th>
+          <th>Card</th>
+          <th>Est. Price</th>
+          <th>Condition</th>
+          <th>Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_All_Will_Be_One"><td class="check-cell"><input type="checkbox" class="card-check" id="c_All_Will_Be_One" onchange="toggleCard(this,'All_Will_Be_One')"></td><td>All Will Be One</td><td class="price-tag">~$8</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=All+Will+Be+One" target="_blank">Search</a></td></tr>
+        <tr id="row_Leonardo__Sewer_King"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Leonardo__Sewer_King" onchange="toggleCard(this,'Leonardo__Sewer_King')"></td><td>Leonardo, Sewer King</td><td class="price-tag">~$6</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Leonardo+Sewer+King" target="_blank">Search</a></td></tr>
+        <tr id="row_Raphael__Crimson_Leader"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Raphael__Crimson_Leader" onchange="toggleCard(this,'Raphael__Crimson_Leader')"></td><td>Raphael, Crimson Leader</td><td class="price-tag">~$5</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Raphael+Crimson+Leader" target="_blank">Search</a></td></tr>
+        <tr id="row_Raph___Leo__Sibling_Rivals"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Raph___Leo__Sibling_Rivals" onchange="toggleCard(this,'Raph___Leo__Sibling_Rivals')"></td><td>Raph & Leo, Sibling Rivals</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Raph+Leo+Sibling+Rivals" target="_blank">Search</a></td></tr>
+        <tr id="row_Mikey___Leo__Chaos___Order"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Mikey___Leo__Chaos___Order" onchange="toggleCard(this,'Mikey___Leo__Chaos___Order')"></td><td>Mikey & Leo, Chaos & Order</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Mikey+Leo+Chaos+Order" target="_blank">Search</a></td></tr>
+        <tr id="row_Mikey___Don__Party_Planners"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Mikey___Don__Party_Planners" onchange="toggleCard(this,'Mikey___Don__Party_Planners')"></td><td>Mikey & Don, Party Planners</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Mikey+Don+Party+Planners" target="_blank">Search</a></td></tr>
+        <tr id="row_Michelangelo__Weirdness_to_11"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Michelangelo__Weirdness_to_11" onchange="toggleCard(this,'Michelangelo__Weirdness_to_11')"></td><td>Michelangelo, Weirdness to 11</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Michelangelo+Weirdness" target="_blank">Search</a></td></tr>
+        <tr id="row_Raphael__Tag_Team_Tough"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Raphael__Tag_Team_Tough" onchange="toggleCard(this,'Raphael__Tag_Team_Tough')"></td><td>Raphael, Tag Team Tough</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Raphael+Tag+Team+Tough" target="_blank">Search</a></td></tr>
+        <tr id="row_Mona_Lisa__Ever_Adaptable"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Mona_Lisa__Ever_Adaptable" onchange="toggleCard(this,'Mona_Lisa__Ever_Adaptable')"></td><td>Mona Lisa, Ever Adaptable</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Mona+Lisa+Ever+Adaptable" target="_blank">Search</a></td></tr>
+        <tr id="row_Mona_Lisa__Science_Geek"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Mona_Lisa__Science_Geek" onchange="toggleCard(this,'Mona_Lisa__Science_Geek')"></td><td>Mona Lisa, Science Geek</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Mona+Lisa+Science+Geek" target="_blank">Search</a></td></tr>
+        <tr id="row_Venus__Torn_Between_Worlds"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Venus__Torn_Between_Worlds" onchange="toggleCard(this,'Venus__Torn_Between_Worlds')"></td><td>Venus, Torn Between Worlds</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Venus+Torn+Between+Worlds" target="_blank">Search</a></td></tr>
+        <tr id="row_Casey_Jones__Asphalt_Hooligan"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Casey_Jones__Asphalt_Hooligan" onchange="toggleCard(this,'Casey_Jones__Asphalt_Hooligan')"></td><td>Casey Jones, Asphalt Hooligan</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Casey+Jones+Asphalt+Hooligan" target="_blank">Search</a></td></tr>
+        <tr id="row_Casey_Jones__Back_Alley_Brute"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Casey_Jones__Back_Alley_Brute" onchange="toggleCard(this,'Casey_Jones__Back_Alley_Brute')"></td><td>Casey Jones, Back Alley Brute</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Casey+Jones+Back+Alley+Brute" target="_blank">Search</a></td></tr>
+        <tr id="row_Ray_Fillet__Man_Ray"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Ray_Fillet__Man_Ray" onchange="toggleCard(this,'Ray_Fillet__Man_Ray')"></td><td>Ray Fillet, Man Ray</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Ray+Fillet+Man+Ray" target="_blank">Search</a></td></tr>
+        <tr id="row_Pizza_Face__Gastromancer"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Pizza_Face__Gastromancer" onchange="toggleCard(this,'Pizza_Face__Gastromancer')"></td><td>Pizza Face, Gastromancer</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://www.facetofacegames.com/search?q=Pizza+Face+Gastromancer" target="_blank">Search</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ENTER THE BATTLEFIELD -->
+  <div class="store-section" style="margin-top:3rem;">
+    <div class="store-header">
+      <span class="store-badge store-etb">Enter the Battlefield</span>
+      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">enterthebattlefield.ca</span>
+    </div>
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th class="check-cell">✓</th>
+          <th>Card</th>
+          <th>Est. Price</th>
+          <th>Condition</th>
+          <th>Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_Turtle_Van"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Turtle_Van" onchange="toggleCard(this,'Turtle_Van')"></td><td>Turtle Van</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Turtle+Van" target="_blank">Search</a></td></tr>
+        <tr id="row_Turtle_Tracks"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Turtle_Tracks" onchange="toggleCard(this,'Turtle_Tracks')"></td><td>Turtle Tracks</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Turtle+Tracks" target="_blank">Search</a></td></tr>
+        <tr id="row_Turtle_Power_"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Turtle_Power_" onchange="toggleCard(this,'Turtle_Power_')"></td><td>Turtle Power!</td><td class="price-tag">~$5</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Turtle+Power" target="_blank">Search</a></td></tr>
+        <tr id="row_Heroes_in_a_Half_Shell"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Heroes_in_a_Half_Shell" onchange="toggleCard(this,'Heroes_in_a_Half_Shell')"></td><td>Heroes in a Half Shell</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Heroes+Half+Shell" target="_blank">Search</a></td></tr>
+        <tr id="row_Here_Comes_a_New_Hero_"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Here_Comes_a_New_Hero_" onchange="toggleCard(this,'Here_Comes_a_New_Hero_')"></td><td>Here Comes a New Hero!</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Here+Comes+New+Hero" target="_blank">Search</a></td></tr>
+        <tr id="row_Donatello_s_Technique"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Donatello_s_Technique" onchange="toggleCard(this,'Donatello_s_Technique')"></td><td>Donatello's Technique</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Donatello+Technique" target="_blank">Search</a></td></tr>
+        <tr id="row_Raphael_s_Technique"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Raphael_s_Technique" onchange="toggleCard(this,'Raphael_s_Technique')"></td><td>Raphael's Technique</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Raphael+Technique" target="_blank">Search</a></td></tr>
+        <tr id="row_New_Generation_s_Technique"><td class="check-cell"><input type="checkbox" class="card-check" id="c_New_Generation_s_Technique" onchange="toggleCard(this,'New_Generation_s_Technique')"></td><td>New Generation's Technique</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=New+Generation+Technique" target="_blank">Search</a></td></tr>
+        <tr id="row_Leo_s_Guidance"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Leo_s_Guidance" onchange="toggleCard(this,'Leo_s_Guidance')"></td><td>Leo's Guidance</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Leo+Guidance" target="_blank">Search</a></td></tr>
+        <tr id="row_Leader_s_Talent"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Leader_s_Talent" onchange="toggleCard(this,'Leader_s_Talent')"></td><td>Leader's Talent</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Leader+Talent" target="_blank">Search</a></td></tr>
+        <tr id="row_Cool_but_Rude"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Cool_but_Rude" onchange="toggleCard(this,'Cool_but_Rude')"></td><td>Cool but Rude</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Cool+but+Rude" target="_blank">Search</a></td></tr>
+        <tr id="row_Shellshock"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Shellshock" onchange="toggleCard(this,'Shellshock')"></td><td>Shellshock</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Shellshock+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Foot_Chopper"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Foot_Chopper" onchange="toggleCard(this,'Foot_Chopper')"></td><td>Foot Chopper</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Foot+Chopper" target="_blank">Search</a></td></tr>
+        <tr id="row_The_Cloning_of_Shredder"><td class="check-cell"><input type="checkbox" class="card-check" id="c_The_Cloning_of_Shredder" onchange="toggleCard(this,'The_Cloning_of_Shredder')"></td><td>The Cloning of Shredder</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Cloning+Shredder" target="_blank">Search</a></td></tr>
+        <tr id="row_Groundchuck___Dirtbag"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Groundchuck___Dirtbag" onchange="toggleCard(this,'Groundchuck___Dirtbag')"></td><td>Groundchuck & Dirtbag</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Groundchuck+Dirtbag" target="_blank">Search</a></td></tr>
+        <tr id="row_Mutagen_Man__Living_Ooze"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Mutagen_Man__Living_Ooze" onchange="toggleCard(this,'Mutagen_Man__Living_Ooze')"></td><td>Mutagen Man, Living Ooze</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Mutagen+Man+Living+Ooze" target="_blank">Search</a></td></tr>
+        <tr id="row_The_Ooze"><td class="check-cell"><input type="checkbox" class="card-check" id="c_The_Ooze" onchange="toggleCard(this,'The_Ooze')"></td><td>The Ooze</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=The+Ooze+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Big_Mother_Mouser"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Big_Mother_Mouser" onchange="toggleCard(this,'Big_Mother_Mouser')"></td><td>Big Mother Mouser</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Big+Mother+Mouser" target="_blank">Search</a></td></tr>
+        <tr id="row_Humongous_Fungus"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Humongous_Fungus" onchange="toggleCard(this,'Humongous_Fungus')"></td><td>Humongous Fungus</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Humongous+Fungus" target="_blank">Search</a></td></tr>
+        <tr id="row_Transdimensional_Bovine"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Transdimensional_Bovine" onchange="toggleCard(this,'Transdimensional_Bovine')"></td><td>Transdimensional Bovine</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Transdimensional+Bovine" target="_blank">Search</a></td></tr>
+        <tr id="row_Frog_Butler"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Frog_Butler" onchange="toggleCard(this,'Frog_Butler')"></td><td>Frog Butler</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://enterthebattlefield.ca/search?q=Frog+Butler" target="_blank">Search</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HAIRY TARANTULA -->
+  <div class="store-section" style="margin-top:3rem;">
+    <div class="store-header">
+      <span class="store-badge store-ht">Hairy Tarantula</span>
+      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">hairytarantula.com · Toronto, ON</span>
+    </div>
+    <table class="card-table">
+      <thead>
+        <tr>
+          <th class="check-cell">✓</th>
+          <th>Card</th>
+          <th>Est. Price</th>
+          <th>Condition</th>
+          <th>Buy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_Arcade_Cabinet"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Arcade_Cabinet" onchange="toggleCard(this,'Arcade_Cabinet')"></td><td>Arcade Cabinet</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Arcade+Cabinet" target="_blank">Search</a></td></tr>
+        <tr id="row_High_Score"><td class="check-cell"><input type="checkbox" class="card-check" id="c_High_Score" onchange="toggleCard(this,'High_Score')"></td><td>High Score</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=High+Score+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Level_Up"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Level_Up" onchange="toggleCard(this,'Level_Up')"></td><td>Level Up</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Level+Up+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Special_Move"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Special_Move" onchange="toggleCard(this,'Special_Move')"></td><td>Special Move</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Special+Move+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Super_Combo"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Super_Combo" onchange="toggleCard(this,'Super_Combo')"></td><td>Super Combo</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Super+Combo+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Raph_s_Jitte"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Raph_s_Jitte" onchange="toggleCard(this,'Raph_s_Jitte')"></td><td>Raph's Jitte</td><td class="price-tag">~$5</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Raph+Jitte" target="_blank">Search</a></td></tr>
+        <tr id="row_Novel_Nunchaku"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Novel_Nunchaku" onchange="toggleCard(this,'Novel_Nunchaku')"></td><td>Novel Nunchaku</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Novel+Nunchaku" target="_blank">Search</a></td></tr>
+        <tr id="row_Wooden_Cane"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Wooden_Cane" onchange="toggleCard(this,'Wooden_Cane')"></td><td>Wooden Cane</td><td class="price-tag">~$1</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Wooden+Cane+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Skateboard"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Skateboard" onchange="toggleCard(this,'Skateboard')"></td><td>Skateboard</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Skateboard+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Improvised_Arsenal"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Improvised_Arsenal" onchange="toggleCard(this,'Improvised_Arsenal')"></td><td>Improvised Arsenal</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Improvised+Arsenal" target="_blank">Search</a></td></tr>
+        <tr id="row_Ronin_s_Arsenal"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Ronin_s_Arsenal" onchange="toggleCard(this,'Ronin_s_Arsenal')"></td><td>Ronin's Arsenal</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Ronin+Arsenal" target="_blank">Search</a></td></tr>
+        <tr id="row_Ninja_Teen"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Ninja_Teen" onchange="toggleCard(this,'Ninja_Teen')"></td><td>Ninja Teen</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Ninja+Teen+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Waves_of_Aggression"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Waves_of_Aggression" onchange="toggleCard(this,'Waves_of_Aggression')"></td><td>Waves of Aggression</td><td class="price-tag">~$4</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Waves+of+Aggression" target="_blank">Search</a></td></tr>
+        <tr id="row_Trouble_in_Pairs"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Trouble_in_Pairs" onchange="toggleCard(this,'Trouble_in_Pairs')"></td><td>Trouble in Pairs</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Trouble+in+Pairs" target="_blank">Search</a></td></tr>
+        <tr id="row_Study_the_Classics"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Study_the_Classics" onchange="toggleCard(this,'Study_the_Classics')"></td><td>Study the Classics</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Study+the+Classics" target="_blank">Search</a></td></tr>
+        <tr id="row_Everything_Pizza"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Everything_Pizza" onchange="toggleCard(this,'Everything_Pizza')"></td><td>Everything Pizza</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Everything+Pizza+MTG" target="_blank">Search</a></td></tr>
+        <tr id="row_Ice_Cream_Kitty"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Ice_Cream_Kitty" onchange="toggleCard(this,'Ice_Cream_Kitty')"></td><td>Ice Cream Kitty</td><td class="price-tag">~$3</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Ice+Cream+Kitty" target="_blank">Search</a></td></tr>
+        <tr id="row_Weather_Maker"><td class="check-cell"><input type="checkbox" class="card-check" id="c_Weather_Maker" onchange="toggleCard(this,'Weather_Maker')"></td><td>Weather Maker</td><td class="price-tag">~$2</td><td><span class="condition">NM</span></td><td><a class="buy-btn" href="https://hairytarantula.com/search?q=Weather+Maker+MTG" target="_blank">Search</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- TOTAL -->
+  <div class="total-bar">
+    <div>
+      <div class="label">Estimated Deck Total</div>
+      <div class="note">All stores · NM preferred · CAD pricing</div>
+    </div>
+    <div>
+      <div class="amount">~$350–$450 CAD</div>
+    </div>
+    <div style="max-width:300px;">
+      <p style="color:rgba(212,245,212,0.5); font-size:0.85rem; line-height:1.6;">Big tickets: Food Chain (~$45), Doubling Season (~$50), Underworld Breach (~$18), Parallel Lives (~$20). Budget swaps available on request.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Built for <span>Hodder</span> · Powered by Turtle Power · TMNT Commander 2026<br>
+  <span style="font-size:0.75rem; color:rgba(212,245,212,0.2); font-family:'Rajdhani',sans-serif; margin-top:0.5rem; display:block;">Prices are estimates. Verify live stock before purchase. Links open store searches.</span>
+</footer>
+
+
+<script>
+  // Load saved state
+  function loadChecks() {
+    const saved = JSON.parse(localStorage.getItem('hodder_deck') || '{}');
+    document.querySelectorAll('.card-check').forEach(cb => {
+      const id = cb.id.replace('c_', '');
+      if (saved[id]) {
+        cb.checked = true;
+        const row = document.getElementById('row_' + id);
+        if (row) row.classList.add('owned');
+      }
+    });
+    updateProgress();
+  }
+
+  function toggleCard(cb, id) {
+    const saved = JSON.parse(localStorage.getItem('hodder_deck') || '{}');
+    saved[id] = cb.checked;
+    localStorage.setItem('hodder_deck', JSON.stringify(saved));
+    const row = document.getElementById('row_' + id);
+    if (row) row.classList.toggle('owned', cb.checked);
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.card-check');
+    const checked = document.querySelectorAll('.card-check:checked');
+    document.getElementById('owned-count').textContent = checked.length;
+    document.getElementById('total-count').textContent = all.length;
+    const pct = all.length ? (checked.length / all.length * 100) : 0;
+    document.getElementById('prog-fill').style.width = pct + '%';
+  }
+
+  function resetAll() {
+    if (!confirm('Reset all checkmarks?')) return;
+    localStorage.removeItem('hodder_deck');
+    document.querySelectorAll('.card-check').forEach(cb => { cb.checked = false; });
+    document.querySelectorAll('tr.owned').forEach(r => r.classList.remove('owned'));
+    updateProgress();
+  }
+
+  window.addEventListener('DOMContentLoaded', loadChecks);
+</script>
+
+</body>
+</html>
