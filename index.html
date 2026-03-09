@@ -857,12 +857,11 @@
 <div class="hero">
   <div class="tag-raph">⚔️ A COMMANDER DECK BY HODDER ⚔️</div>
   <h1>HODDER'S REVENGE<br>OF RALPH</h1>
-  <div class="subtitle">Bathtub — No Room for Emo</div>
+  <div class="subtitle">Shell Yeah — They're Coming For Your Lands</div>
   <p class="hero-desc">
-    Two brothers. One battlefield. Zero chill. This is the TMNT Commander deck that turns the sewer into a war zone — token armies backed by Raphael's rage, disciplined by Leonardo's vision. Tokens on tokens. Counters on counters. 
-    Every pizza slice earned in blood. <strong>Cowabunga, motherf***er.</strong>
+    Two brothers. One battlefield. Zero chill. This is the TMNT Commander deck that turns the sewer into a war zone — token armies backed by Raphael's rage, disciplined by Leonardo's vision. Tokens on tokens. Counters on counters. Every pizza slice earned in blood. <strong>Cowabunga, motherf***er.</strong>
   </p>
-  <div class="commander-badges">
+  <div class="commander-badges" style="margin-top:3rem;">
     <a class="badge badge-leo" href="#commanders">⚖️ Leonardo, The Balance</a>
     <a class="badge badge-raph" href="#commanders">💪 Raphael, The Muscle</a>
   </div>
@@ -1277,500 +1276,376 @@
 
 <div class="sewer-divider">— mikey's pizza run —</div>
 
-<section id="game" style="max-width:900px;margin:0 auto;padding:3rem 1rem;">
+<section id="game" style="max-width:860px;margin:0 auto;padding:3rem 1rem 2rem;">
   <div class="section-title">🍕 Mikey's Pizza Run</div>
   <div class="section-line"></div>
-  <p style="color:rgba(245,212,212,0.6);margin-bottom:1.5rem;">Help Mikey skate through New York — dodge Foot Clan ninjas &amp; trash cans, grab pizzas for points. Tap/click to jump!</p>
+  <p style="color:rgba(245,212,212,0.6);margin-bottom:1.5rem;">Skate through New York — dodge Foot Clan ninjas, grab pizzas. Tap the big button or press SPACE to jump!</p>
 
-  <div id="game-wrap" style="position:relative;border:3px solid rgba(200,0,30,0.5);border-radius:12px;overflow:hidden;background:#1a0a0a;box-shadow:0 0 40px rgba(200,0,30,0.2);">
+  <div id="gWrap" style="position:relative;border:3px solid rgba(200,0,30,0.6);border-radius:12px;overflow:hidden;background:#0a0404;box-shadow:0 0 40px rgba(200,0,30,0.25);user-select:none;">
 
     <!-- HUD -->
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 1.2rem;background:rgba(0,0,0,0.6);border-bottom:1px solid rgba(200,0,30,0.3);">
-      <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#ff6a00;letter-spacing:0.15em;">🍕 PIZZA RUN</span>
-      <span id="g-score" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#ffe600;text-shadow:0 0 10px rgba(255,230,0,0.5);">0</span>
-      <span id="g-hi" style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:rgba(245,212,212,0.4);">HI: 0</span>
+    <div style="display:flex;justify-content:space-between;padding:0.5rem 1rem;background:rgba(0,0,0,0.7);border-bottom:2px solid rgba(200,0,30,0.4);">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:#ff6a00;letter-spacing:0.1em;">🛹 PIZZA RUN</span>
+      <span id="gScore" style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#ffe600;">0</span>
+      <span id="gHi" style="font-family:'Bebas Neue',sans-serif;font-size:1rem;color:rgba(245,212,212,0.4);">HI: 0</span>
     </div>
 
-    <!-- CANVAS -->
-    <canvas id="gameCanvas" style="display:block;width:100%;image-rendering:pixelated;"></canvas>
+    <!-- GAME CANVAS -->
+    <canvas id="gCanvas"></canvas>
 
-    <!-- OVERLAY -->
-    <div id="g-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,4,4,0.85);z-index:10;cursor:pointer;">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,4rem);color:#ff1a3c;text-shadow:0 0 30px rgba(255,0,40,0.8);letter-spacing:0.1em;">COWABUNGA!</div>
-      <div id="g-msg" style="font-family:'Permanent Marker',cursive;color:#ff6a00;font-size:1.2rem;margin:0.5rem 0 2rem;">Tap to start skating</div>
-      <button id="g-startbtn" style="font-family:'Bebas Neue',sans-serif;font-size:2rem;padding:1rem 3rem;background:#cc0022;color:white;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.15em;box-shadow:0 0 30px rgba(200,0,30,0.6);transition:transform 0.1s;" ontouchstart="this.style.transform='scale(0.95)'" ontouchend="this.style.transform='scale(1)'">
-        🛹 SKATE!
-      </button>
+    <!-- START/DEAD OVERLAY -->
+    <div id="gOver" style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(5,0,0,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;z-index:20;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,10vw,5rem);color:#ff1a3c;text-shadow:0 0 40px #ff003c;letter-spacing:0.05em;">COWABUNGA!</div>
+      <div id="gOverMsg" style="font-family:'Permanent Marker',cursive;color:#ff6a00;font-size:clamp(1rem,4vw,1.4rem);text-align:center;padding:0 1rem;">Tap anywhere or press SPACE to start</div>
+      <div id="gOverScore" style="font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#ffe600;display:none;"></div>
     </div>
 
-    <!-- MOBILE JUMP BUTTON -->
-    <div style="display:flex;gap:1rem;padding:1rem;background:rgba(0,0,0,0.5);border-top:1px solid rgba(200,0,30,0.3);justify-content:center;">
-      <button id="g-jump" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;padding:1rem 4rem;background:linear-gradient(135deg,#cc0022,#ff6a00);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:0.1em;box-shadow:0 6px 0 #880015,0 0 30px rgba(200,0,30,0.4);active:transform:translateY(4px);flex:1;max-width:400px;touch-action:manipulation;">
-        ⬆ JUMP
+    <!-- JUMP BUTTON -->
+    <div style="padding:0.8rem;background:rgba(0,0,0,0.6);border-top:2px solid rgba(200,0,30,0.4);">
+      <button id="gJump"
+        style="width:100%;padding:1.2rem;font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:0.15em;background:linear-gradient(135deg,#cc0022,#ff4400);color:white;border:none;border-radius:10px;cursor:pointer;box-shadow:0 6px 0 #770011,0 0 30px rgba(200,0,30,0.5);-webkit-tap-highlight-color:transparent;touch-action:manipulation;">
+        ⬆&nbsp;&nbsp;JUMP
       </button>
     </div>
   </div>
-
-  <p style="text-align:center;color:rgba(245,212,212,0.3);font-size:0.8rem;margin-top:0.8rem;letter-spacing:0.1em;">SPACE / TAP / CLICK = JUMP · Grab pizzas · Dodge ninjas &amp; trash</p>
+  <p style="text-align:center;color:rgba(245,212,212,0.25);font-size:0.8rem;margin-top:0.6rem;">SPACE / tap jump button / tap screen = jump &nbsp;·&nbsp; double jump allowed</p>
 </section>
 
 <script>
-(function() {
-  const canvas = document.getElementById('gameCanvas');
-  const ctx = canvas.getContext('2d');
-  const overlay = document.getElementById('g-overlay');
-  const startBtn = document.getElementById('g-startbtn');
-  const jumpBtn = document.getElementById('g-jump');
-  const scoreEl = document.getElementById('g-score');
-  const hiEl = document.getElementById('g-hi');
-  const msgEl = document.getElementById('g-msg');
+!function(){
+  var canvas = document.getElementById('gCanvas');
+  var ctx    = canvas.getContext('2d');
+  var wrap   = document.getElementById('gWrap');
+  var over   = document.getElementById('gOver');
+  var overMsg= document.getElementById('gOverMsg');
+  var overSc = document.getElementById('gOverScore');
+  var jumpBtn= document.getElementById('gJump');
+  var scoreEl= document.getElementById('gScore');
+  var hiEl   = document.getElementById('gHi');
 
-  // Responsive canvas
-  function resize() {
-    const wrap = document.getElementById('game-wrap');
-    const w = wrap.clientWidth;
-    canvas.width = Math.min(w, 900);
-    canvas.height = Math.floor(canvas.width * 0.38);
+  var W, H, GY, SC; // ground Y, scale
+  var hi = 0;
+  var state = 'idle'; // idle | playing | dead
+  var raf;
+
+  function setSize(){
+    W = wrap.clientWidth || 800;
+    H = Math.round(W * 0.4);
+    if(H < 160) H = 160;
+    if(H > 360) H = 360;
+    canvas.width  = W;
+    canvas.height = H;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    GY = Math.round(H * 0.76);
+    SC = W / 800;
   }
-  resize();
-  window.addEventListener('resize', () => { resize(); });
+  setSize();
+  window.addEventListener('resize', function(){ setSize(); if(state!=='playing') drawIdle(); });
 
-  const W = () => canvas.width;
-  const H = () => canvas.height;
-  const GROUND = () => H() * 0.78;
-  const SCALE = () => canvas.width / 900;
-
-  // AudioContext for sounds
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  let actx = null;
-
-  function playJump() {
-    try {
-      if (!actx) actx = new AudioCtx();
-      const o = actx.createOscillator();
-      const g = actx.createGain();
-      o.connect(g); g.connect(actx.destination);
-      o.frequency.setValueAtTime(300, actx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(600, actx.currentTime + 0.1);
-      g.gain.setValueAtTime(0.3, actx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.2);
-      o.start(); o.stop(actx.currentTime + 0.2);
-    } catch(e) {}
+  /* ---- AUDIO ---- */
+  var actx;
+  function getACtx(){ if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)(); return actx; }
+  function beep(freq, dur, type, vol){
+    try{
+      var a=getACtx(), o=a.createOscillator(), g=a.createGain();
+      o.type=type||'square'; o.frequency.value=freq;
+      g.gain.setValueAtTime(vol||0.3,a.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,a.currentTime+dur);
+      o.connect(g); g.connect(a.destination);
+      o.start(); o.stop(a.currentTime+dur);
+    }catch(e){}
   }
+  function sndJump(){ beep(350,0.12,'sine',0.25); }
+  function sndPizza(){ beep(523,0.08,'triangle',0.2); setTimeout(function(){beep(659,0.08,'triangle',0.2);},80); setTimeout(function(){beep(784,0.12,'triangle',0.2);},160); }
+  function sndDie(){ beep(300,0.5,'sawtooth',0.3); }
 
-  function playPizza() {
-    try {
-      if (!actx) actx = new AudioCtx();
-      [523, 659, 784].forEach((freq, i) => {
-        const o = actx.createOscillator();
-        const g = actx.createGain();
-        o.connect(g); g.connect(actx.destination);
-        o.type = 'triangle';
-        o.frequency.value = freq;
-        g.gain.setValueAtTime(0.2, actx.currentTime + i*0.08);
-        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + i*0.08 + 0.15);
-        o.start(actx.currentTime + i*0.08);
-        o.stop(actx.currentTime + i*0.08 + 0.15);
-      });
-    } catch(e) {}
-  }
+  /* ---- GAME STATE ---- */
+  var score, frame, speed, spawnCD;
+  var mikey, obstacles, pizzas, bgX;
 
-  function playDead() {
-    try {
-      if (!actx) actx = new AudioCtx();
-      const o = actx.createOscillator();
-      const g = actx.createGain();
-      o.connect(g); g.connect(actx.destination);
-      o.frequency.setValueAtTime(400, actx.currentTime);
-      o.frequency.exponentialRampToValueAtTime(80, actx.currentTime + 0.4);
-      g.gain.setValueAtTime(0.4, actx.currentTime);
-      g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
-      o.start(); o.stop(actx.currentTime + 0.5);
-    } catch(e) {}
+  function init(){
+    score=0; frame=0; speed=4.5; spawnCD=90; bgX=0;
+    mikey={ x:Math.round(110*SC), y:GY, vy:0, jumps:0 };
+    obstacles=[]; pizzas=[];
+    scoreEl.textContent='0';
   }
 
-  // Game state
-  let state = 'idle'; // idle, playing, dead
-  let score = 0, hi = 0, frame = 0, speed = 0, spawnTimer = 0;
-  let mikey, obstacles, pizzas, stars, buildings, bgOffset = 0;
+  /* ---- DRAW HELPERS ---- */
+  function rect(x,y,w,h,col){ ctx.fillStyle=col; ctx.fillRect(x,y,w,h); }
+  function circle(x,y,r,col){ ctx.fillStyle=col; ctx.beginPath(); ctx.arc(x,y,r,0,6.283); ctx.fill(); }
 
-  // Draw functions
-  function drawMikey(x, y, jumping) {
-    const s = SCALE();
-    ctx.save();
-    ctx.translate(x, y);
+  function drawBG(){
+    // Sky
+    var grad=ctx.createLinearGradient(0,0,0,GY);
+    grad.addColorStop(0,'#0d0008');
+    grad.addColorStop(1,'#1a0510');
+    ctx.fillStyle=grad; ctx.fillRect(0,0,W,GY);
 
-    // Skateboard
-    ctx.fillStyle = '#8B4513';
-    ctx.fillRect(-22*s, 2*s, 44*s, 7*s);
-    ctx.fillStyle = '#ff6a00';
-    ctx.fillRect(-20*s, 0, 40*s, 4*s);
-    // Wheels
-    ctx.fillStyle = '#333';
-    [-14*s, 10*s].forEach(wx => {
-      ctx.beginPath();
-      ctx.arc(wx, 9*s, 6*s, 0, Math.PI*2);
-      ctx.fill();
-      ctx.fillStyle = '#888';
-      ctx.beginPath();
-      ctx.arc(wx, 9*s, 3*s, 0, Math.PI*2);
-      ctx.fill();
-      ctx.fillStyle = '#333';
-    });
-
-    // Body — turtle green
-    ctx.fillStyle = '#4a9e4a';
-    ctx.beginPath();
-    ctx.ellipse(0, -18*s, 13*s, 18*s, jumping ? -0.3 : 0, 0, Math.PI*2);
-    ctx.fill();
-
-    // Shell
-    ctx.fillStyle = '#2d5e1a';
-    ctx.beginPath();
-    ctx.ellipse(4*s, -20*s, 9*s, 11*s, 0.3, 0, Math.PI*2);
-    ctx.fill();
-    ctx.strokeStyle = '#1a3a0a';
-    ctx.lineWidth = 1;
-    [[4,−24],[−1,−18],[9,−17],[4,−13]].forEach(([ex,ey]) => {
-      ctx.beginPath();
-      ctx.moveTo(4*s,-20*s);
-      ctx.lineTo(ex*s,ey*s);
-      ctx.stroke();
-    });
-
-    // Head
-    ctx.fillStyle = '#5ab35a';
-    ctx.beginPath();
-    ctx.ellipse(-6*s, -34*s, 9*s, 8*s, -0.2, 0, Math.PI*2);
-    ctx.fill();
-
-    // Orange bandana
-    ctx.fillStyle = '#ff6a00';
-    ctx.fillRect(-14*s, -39*s, 18*s, 7*s);
-    // Bandana tails
-    ctx.beginPath();
-    ctx.moveTo(4*s, -38*s);
-    ctx.lineTo(14*s, -32*s);
-    ctx.lineTo(12*s, -28*s);
-    ctx.lineTo(2*s, -34*s);
-    ctx.fill();
-
-    // Eyes
-    ctx.fillStyle = 'white';
-    ctx.beginPath(); ctx.arc(-10*s, -36*s, 4*s, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#222';
-    ctx.beginPath(); ctx.arc(-9*s, -36*s, 2.5*s, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = 'white';
-    ctx.beginPath(); ctx.arc(-8*s, -37*s, 1*s, 0, Math.PI*2); ctx.fill();
-
-    // Smile
-    ctx.strokeStyle = '#1a3a0a';
-    ctx.lineWidth = 1.5*s;
-    ctx.beginPath();
-    ctx.arc(-6*s, -32*s, 4*s, 0.2, Math.PI - 0.2);
-    ctx.stroke();
-
-    // Arm holding nunchucks
-    ctx.strokeStyle = '#4a9e4a';
-    ctx.lineWidth = 4*s;
-    ctx.beginPath();
-    ctx.moveTo(8*s, -22*s);
-    ctx.lineTo(18*s, -30*s);
-    ctx.stroke();
-    ctx.fillStyle = '#8B4513';
-    ctx.fillRect(16*s, -34*s, 4*s, 10*s);
-    ctx.beginPath();
-    ctx.moveTo(18*s, -24*s);
-    ctx.lineTo(22*s, -16*s);
-    ctx.stroke();
-    ctx.fillStyle = '#8B4513';
-    ctx.fillRect(20*s, -18*s, 4*s, 9*s);
-
-    ctx.restore();
-  }
-
-  function drawObstacle(ob) {
-    const s = SCALE();
-    ctx.save();
-    ctx.translate(ob.x, GROUND());
-    if (ob.type === 'ninja') {
-      // Foot clan ninja
-      ctx.fillStyle = '#111';
-      ctx.fillRect(-10*s, -40*s, 20*s, 40*s); // body
-      ctx.fillStyle = '#222';
-      ctx.beginPath(); ctx.arc(0, -46*s, 10*s, 0, Math.PI*2); ctx.fill(); // head
-      ctx.fillStyle = '#cc0022';
-      ctx.fillRect(-12*s, -52*s, 24*s, 8*s); // headband
-      // Sword
-      ctx.strokeStyle = '#aaa';
-      ctx.lineWidth = 3*s;
-      ctx.beginPath();
-      ctx.moveTo(10*s,-35*s);
-      ctx.lineTo(28*s,-10*s);
-      ctx.stroke();
-    } else {
-      // Trash can
-      ctx.fillStyle = '#556';
-      ctx.fillRect(-12*s, -35*s, 24*s, 35*s);
-      ctx.fillStyle = '#667';
-      ctx.fillRect(-14*s, -38*s, 28*s, 8*s);
-      // Lid
-      ctx.fillStyle = '#445';
-      ctx.fillRect(-12*s, -42*s, 24*s, 6*s);
-      ctx.fillStyle = '#88ff88';
-      ctx.font = `${14*s}px sans-serif`;
-      ctx.fillText('♻', -8*s, -18*s);
+    // Stars
+    ctx.fillStyle='rgba(255,255,255,0.7)';
+    for(var i=0;i<40;i++){
+      var sx=((i*137+bgX*0.02)%W+W)%W;
+      var sy=(i*73)%(GY*0.6);
+      ctx.fillRect(sx,sy,1.5,1.5);
     }
-    ctx.restore();
-  }
 
-  function drawPizza(p) {
-    const s = SCALE();
-    ctx.save();
-    ctx.translate(p.x, p.y);
-    ctx.rotate(frame * 0.05);
-    // Pizza circle
-    ctx.fillStyle = '#f5a623';
-    ctx.beginPath(); ctx.arc(0, 0, 14*s, 0, Math.PI*2); ctx.fill();
-    ctx.fillStyle = '#cc3300';
-    ctx.beginPath(); ctx.arc(0, 0, 10*s, 0, Math.PI*2); ctx.fill();
-    // Toppings
-    ctx.fillStyle = '#ffcc00';
-    [[-4,-4],[4,-3],[-2,5],[5,4]].forEach(([tx,ty]) => {
-      ctx.beginPath(); ctx.arc(tx*s,ty*s,2.5*s,0,Math.PI*2); ctx.fill();
-    });
-    // Glow
-    ctx.strokeStyle = 'rgba(255,200,0,0.6)';
-    ctx.lineWidth = 2*s;
-    ctx.beginPath(); ctx.arc(0, 0, 16*s, 0, Math.PI*2); ctx.stroke();
-    ctx.restore();
-  }
-
-  function drawBuildings() {
-    const s = SCALE();
-    const bgs = [
-      {x:0,w:80,h:180,c:'#1a0a1a'},{x:90,w:60,h:140,c:'#0a1a2a'},
-      {x:160,w:100,h:200,c:'#1a1a0a'},{x:270,w:70,h:160,c:'#0a0a1a'},
-      {x:350,w:90,h:190,c:'#1a0a0a'},{x:450,w:65,h:145,c:'#0a1a0a'},
-      {x:525,w:110,h:210,c:'#1a0a1a'},{x:645,w:75,h:170,c:'#0a0a2a'},
-      {x:730,w:85,h:195,c:'#1a1a0a'},{x:825,w:95,h:155,c:'#0a1a1a'},
+    // Buildings
+    var blds=[
+      {ox:0,w:70,h:160,c:'#150510'},{ox:80,w:55,h:120,c:'#0a0f1a'},
+      {ox:145,w:90,h:190,c:'#100a00'},{ox:245,w:60,h:140,c:'#0a0a18'},
+      {ox:315,w:80,h:175,c:'#150510'},{ox:405,w:65,h:130,c:'#0a150a'},
+      {ox:480,w:100,h:200,c:'#100510'},{ox:590,w:70,h:155,c:'#0a0a20'},
+      {ox:670,w:75,h:180,c:'#120a00'},{ox:755,w:85,h:145,c:'#0a1010'},
+      {ox:850,w:70,h:170,c:'#150508'},{ox:930,w:60,h:135,c:'#0a0a18'},
     ];
-    bgs.forEach(b => {
-      const bx = ((b.x - bgOffset * 0.3) % (W() + 120) + W() + 120) % (W() + 120) - 60;
-      ctx.fillStyle = b.c;
-      ctx.fillRect(bx, GROUND() - b.h*s, b.w*s, b.h*s);
-      // Windows
-      ctx.fillStyle = 'rgba(255,220,100,0.5)';
-      for (let wy = 20; wy < b.h - 20; wy += 25) {
-        for (let wx = 10; wx < b.w - 10; wx += 18) {
-          if (Math.sin(b.x + wy + wx) > 0.2) {
-            ctx.fillRect(bx + wx*s, GROUND() - b.h*s + wy*s, 8*s, 12*s);
+    blds.forEach(function(b){
+      var bx = ((b.ox - bgX*0.25)%1100+1100)%1100 - 100;
+      rect(bx, GY-b.h, b.w, b.h, b.c);
+      // windows
+      for(var wy=15;wy<b.h-20;wy+=22){
+        for(var wx=8;wx<b.w-8;wx+=16){
+          if(Math.sin(b.ox+wy*3+wx*7)>0.1){
+            ctx.fillStyle='rgba(255,210,80,'+(0.3+Math.sin(frame*0.02+b.ox+wy)*0.15)+')';
+            ctx.fillRect(bx+wx, GY-b.h+wy, 9, 13);
           }
         }
       }
     });
-  }
 
-  function drawGround() {
-    const s = SCALE();
     // Road
-    ctx.fillStyle = '#1a1218';
-    ctx.fillRect(0, GROUND(), W(), H() - GROUND());
-    // Road markings
-    ctx.strokeStyle = 'rgba(255,200,0,0.3)';
-    ctx.lineWidth = 3*s;
-    ctx.setLineDash([40*s, 30*s]);
-    ctx.lineDashOffset = -(bgOffset % 70) * s;
-    ctx.beginPath();
-    ctx.moveTo(0, GROUND() + (H()-GROUND())*0.5);
-    ctx.lineTo(W(), GROUND() + (H()-GROUND())*0.5);
-    ctx.stroke();
+    rect(0,GY,W,H-GY,'#141014');
+    // Curb stripe
+    rect(0,GY,W,3,'#cc0022');
+    // Road lines
+    ctx.strokeStyle='rgba(255,200,0,0.25)';
+    ctx.lineWidth=3;
+    ctx.setLineDash([35,25]);
+    ctx.lineDashOffset=-(bgX%60);
+    ctx.beginPath(); ctx.moveTo(0,GY+(H-GY)*0.55); ctx.lineTo(W,GY+(H-GY)*0.55); ctx.stroke();
     ctx.setLineDash([]);
-    // Curb
-    ctx.fillStyle = '#2a1a2a';
-    ctx.fillRect(0, GROUND(), W(), 5*s);
-    ctx.fillStyle = '#cc0022';
-    ctx.fillRect(0, GROUND(), W(), 2*s);
   }
 
-  function drawStars() {
-    ctx.fillStyle = 'rgba(255,255,255,0.8)';
-    stars.forEach(st => {
-      const size = Math.sin(frame * 0.03 + st.phase) * 0.5 + 1;
-      ctx.fillRect(st.x, st.y, size, size);
+  function drawMikey(x,y,jumping){
+    var s=SC;
+    ctx.save(); ctx.translate(x,y);
+
+    // Board
+    rect(-22*s, 2*s, 44*s, 6*s, '#8B4513');
+    rect(-20*s, -1*s, 40*s, 4*s, '#ff6a00');
+    // Wheels
+    [-13*s,11*s].forEach(function(wx){
+      circle(wx,8*s,5*s,'#333');
+      circle(wx,8*s,2.5*s,'#888');
     });
+
+    // Body
+    ctx.fillStyle='#4da84d';
+    ctx.beginPath();
+    ctx.ellipse(0,-20*s,12*s,18*s,jumping?-0.25:0,0,6.283);
+    ctx.fill();
+
+    // Shell
+    ctx.fillStyle='#2d6b1a';
+    ctx.beginPath();
+    ctx.ellipse(4*s,-21*s,9*s,11*s,0.25,0,6.283);
+    ctx.fill();
+
+    // Head
+    circle(-5*s,-36*s,9*s,'#5aba5a');
+
+    // Orange bandana
+    rect(-14*s,-41*s,20*s,7*s,'#ff6600');
+    // Tail
+    ctx.fillStyle='#dd5500';
+    ctx.beginPath();
+    ctx.moveTo(6*s,-40*s); ctx.lineTo(16*s,-34*s); ctx.lineTo(14*s,-29*s); ctx.lineTo(4*s,-35*s);
+    ctx.fill();
+
+    // Eyes
+    circle(-9*s,-37*s,3.5*s,'white');
+    circle(-8*s,-37*s,2*s,'#111');
+    circle(-7*s,-38*s,0.8*s,'white');
+
+    // Smile
+    ctx.strokeStyle='#1a4a1a'; ctx.lineWidth=1.5*s;
+    ctx.beginPath(); ctx.arc(-5*s,-33*s,3.5*s,0.1,Math.PI-0.1); ctx.stroke();
+
+    ctx.restore();
   }
 
-  // Sewer grate in distance
-  function drawBg() {
-    ctx.fillStyle = '#0a0404';
-    ctx.fillRect(0, 0, W(), H());
-    drawStars();
-    // NY skyline silhouette
-    ctx.fillStyle = 'rgba(30,10,10,0.8)';
-    drawBuildings();
-    // Sewer steam
-    if (frame % 180 < 60) {
-      const alpha = Math.sin((frame % 60) / 60 * Math.PI) * 0.2;
-      ctx.fillStyle = `rgba(150,150,150,${alpha})`;
-      ctx.beginPath();
-      ctx.ellipse(W()*0.7, GROUND(), 20*SCALE(), 30*SCALE(), 0, 0, Math.PI*2);
-      ctx.fill();
+  function drawObstacle(ob){
+    var s=SC;
+    ctx.save(); ctx.translate(ob.x, GY);
+    if(ob.type==='ninja'){
+      // Body
+      rect(-10*s,-42*s,20*s,42*s,'#111');
+      // Head
+      circle(0,-48*s,10*s,'#222');
+      // Red headband
+      rect(-12*s,-54*s,24*s,7*s,'#cc0022');
+      // Sword
+      ctx.strokeStyle='#bbb'; ctx.lineWidth=3*s;
+      ctx.beginPath(); ctx.moveTo(8*s,-36*s); ctx.lineTo(26*s,-12*s); ctx.stroke();
+      // Eyes (menacing)
+      ctx.fillStyle='#ff3300';
+      rect(-4*s,-52*s,8*s,3*s,'#ff2200');
+    } else {
+      // Trash can
+      rect(-11*s,-38*s,22*s,38*s,'#445566');
+      rect(-13*s,-42*s,26*s,7*s,'#556677');
+      rect(-11*s,-47*s,22*s,7*s,'#334455');
+      ctx.fillStyle='#66ff66'; ctx.font=(13*s)+'px sans-serif';
+      ctx.fillText('♻',-7*s,-18*s);
     }
+    ctx.restore();
   }
 
-  function initGame() {
-    mikey = {
-      x: 120 * SCALE(),
-      y: GROUND(),
-      vy: 0,
-      jumping: false,
-      jumpCount: 0,
-    };
-    obstacles = [];
-    pizzas = [];
-    stars = Array.from({length: 60}, () => ({
-      x: Math.random() * 900,
-      y: Math.random() * GROUND() * 0.6,
-      phase: Math.random() * Math.PI * 2
-    }));
-    score = 0;
-    frame = 0;
-    speed = 5;
-    spawnTimer = 0;
-    bgOffset = 0;
+  function drawPizza(p){
+    var s=SC;
+    ctx.save(); ctx.translate(p.x, p.y);
+    ctx.rotate(frame*0.04);
+    circle(0,0,13*s,'#f5a623');
+    circle(0,0,9*s,'#cc3300');
+    ctx.fillStyle='#ffdd00';
+    [[-4,-4],[4,-3],[-2,5],[5,4]].forEach(function(t){
+      circle(t[0]*s,t[1]*s,2.5*s,'#ffdd00');
+    });
+    // Glow pulse
+    ctx.strokeStyle='rgba(255,200,0,'+(0.4+Math.sin(frame*0.1)*0.2)+')';
+    ctx.lineWidth=2*s;
+    ctx.beginPath(); ctx.arc(0,0,15*s,0,6.283); ctx.stroke();
+    ctx.restore();
   }
 
-  function jump() {
-    if (state !== 'playing') return;
-    if (mikey.jumpCount < 2) {
-      playJump();
-      mikey.vy = -18 * SCALE();
-      mikey.jumping = true;
-      mikey.jumpCount++;
-    }
-  }
-
-  function startGame() {
-    initGame();
-    state = 'playing';
-    overlay.style.display = 'none';
-    loop();
-  }
-
-  function gameOver() {
-    state = 'dead';
-    playDead();
-    if (score > hi) { hi = score; hiEl.textContent = 'HI: ' + hi; }
-    overlay.style.display = 'flex';
-    msgEl.textContent = 'Score: ' + score + ' 🍕 — Tap to try again!';
-    startBtn.textContent = '🛹 RETRY!';
-  }
-
-  let raf = null;
-  function loop() {
-    if (state !== 'playing') return;
-    raf = requestAnimationFrame(loop);
+  /* ---- GAME LOOP ---- */
+  function loop(){
+    if(state!=='playing') return;
+    raf=requestAnimationFrame(loop);
     frame++;
-    speed = 5 + Math.floor(score / 8) * 0.5;
+    speed = 4.5 + Math.floor(score/10)*0.4;
+    bgX += speed;
 
-    // Physics
-    mikey.vy += 0.9 * SCALE();
-    mikey.y += mikey.vy;
-    if (mikey.y >= GROUND()) {
-      mikey.y = GROUND();
-      mikey.vy = 0;
-      mikey.jumping = false;
-      mikey.jumpCount = 0;
-    }
-
-    bgOffset += speed * 0.5;
+    // Mikey physics
+    mikey.vy += 0.85*SC;
+    mikey.y  += mikey.vy;
+    if(mikey.y >= GY){ mikey.y=GY; mikey.vy=0; mikey.jumps=0; }
 
     // Spawn obstacles
-    spawnTimer--;
-    if (spawnTimer <= 0) {
-      const gap = Math.max(60, 120 - score * 2);
-      spawnTimer = gap + Math.random() * 60;
-      obstacles.push({x: W() + 30, type: Math.random() < 0.5 ? 'ninja' : 'trash'});
+    spawnCD--;
+    if(spawnCD<=0){
+      spawnCD = Math.max(55, 100 - score*1.5) + Math.random()*40;
+      obstacles.push({ x:W+40, type:Math.random()<0.55?'ninja':'trash',
+        w:18*SC, h:42*SC });
     }
 
-    // Spawn pizzas
-    if (Math.random() < 0.008) {
-      pizzas.push({
-        x: W() + 20,
-        y: GROUND() - (50 + Math.random() * 80) * SCALE()
-      });
+    // Spawn pizza
+    if(Math.random()<0.009){
+      pizzas.push({ x:W+20, y:GY - (55+Math.random()*90)*SC });
     }
 
-    // Move obstacles
-    obstacles.forEach(o => o.x -= speed * SCALE());
-    obstacles = obstacles.filter(o => o.x > -60);
+    // Move
+    var spd=speed*SC;
+    obstacles.forEach(function(o){ o.x-=spd; });
+    pizzas.forEach(function(p){ p.x-=spd; });
+    obstacles=obstacles.filter(function(o){ return o.x>-60; });
+    pizzas=pizzas.filter(function(p){ return p.x>-30; });
 
-    // Move pizzas
-    pizzas.forEach(p => p.x -= speed * SCALE());
-    pizzas = pizzas.filter(p => p.x > -30);
-
-    // Collision — obstacles (tight hitbox)
-    const s = SCALE();
-    const mx = mikey.x, my = mikey.y;
-    for (const o of obstacles) {
-      if (Math.abs(o.x - mx) < 18*s && my - GROUND() > -45*s) {
-        gameOver(); return;
+    // Collision obstacles
+    var mx=mikey.x, my=mikey.y;
+    for(var i=0;i<obstacles.length;i++){
+      var o=obstacles[i];
+      var hitW=16*SC, hitH=40*SC;
+      if(mx+8*SC > o.x-hitW && mx-8*SC < o.x+hitW && my-hitH < GY+2 && my > GY-hitH-5*SC){
+        die(); return;
       }
     }
 
-    // Collect pizzas
-    pizzas = pizzas.filter(p => {
-      if (Math.abs(p.x - mx) < 20*s && Math.abs(p.y - my) < 30*s) {
-        score += 10;
-        scoreEl.textContent = score;
-        playPizza();
-        return false;
+    // Collect pizza
+    pizzas=pizzas.filter(function(p){
+      if(Math.abs(p.x-mx)<20*SC && Math.abs(p.y-my)<25*SC){
+        score+=10; scoreEl.textContent=score; sndPizza(); return false;
       }
       return true;
     });
 
-    // Survival score
-    if (frame % 30 === 0) { score += 1; scoreEl.textContent = score; }
+    // Survival
+    if(frame%30===0){ score++; scoreEl.textContent=score; }
 
     // Draw
-    drawBg();
-    drawGround();
-    obstacles.forEach(drawObstacle);
+    drawBG();
     pizzas.forEach(drawPizza);
-    drawMikey(mikey.x, mikey.y, mikey.jumping);
-
-    // Speed indicator
-    ctx.fillStyle = 'rgba(255,106,0,0.4)';
-    ctx.font = `${12*s}px "Bebas Neue", sans-serif`;
-    ctx.fillText('SPEED: ' + speed.toFixed(1), 10*s, 20*s);
+    obstacles.forEach(drawObstacle);
+    drawMikey(mikey.x, mikey.y, mikey.jumps>0);
   }
 
-  // Controls
-  startBtn.addEventListener('click', startGame);
-  startBtn.addEventListener('touchstart', e => { e.preventDefault(); startGame(); });
-  overlay.addEventListener('click', startGame);
-  overlay.addEventListener('touchstart', e => { e.preventDefault(); startGame(); });
-  jumpBtn.addEventListener('click', jump);
-  jumpBtn.addEventListener('touchstart', e => { e.preventDefault(); jump(); });
-  document.addEventListener('keydown', e => {
-    if (e.code === 'Space' || e.code === 'ArrowUp') {
-      e.preventDefault();
-      if (state === 'idle' || state === 'dead') startGame();
-      else jump();
+  function doJump(){
+    if(state==='idle'||state==='dead'){ startGame(); return; }
+    if(state==='playing' && mikey.jumps<2){
+      mikey.vy = -16*SC;
+      mikey.jumps++;
+      sndJump();
+    }
+  }
+
+  function startGame(){
+    if(raf) cancelAnimationFrame(raf);
+    init();
+    over.style.display='none';
+    state='playing';
+    loop();
+  }
+
+  function die(){
+    state='dead';
+    sndDie();
+    if(score>hi){ hi=score; hiEl.textContent='HI: '+hi; }
+    overMsg.textContent='Score: '+score+' 🍕 — Tap to try again!';
+    overSc.style.display='none';
+    over.style.display='flex';
+    cancelAnimationFrame(raf);
+  }
+
+  function drawIdle(){
+    setSize();
+    drawBG();
+    drawMikey(110*SC, GY, false);
+  }
+
+  /* ---- CONTROLS ---- */
+  // Jump button - all events
+  ['click','touchstart'].forEach(function(ev){
+    jumpBtn.addEventListener(ev, function(e){
+      e.preventDefault(); e.stopPropagation(); doJump();
+    }, {passive:false});
+  });
+
+  // Overlay tap to start
+  ['click','touchstart'].forEach(function(ev){
+    over.addEventListener(ev, function(e){
+      e.preventDefault(); startGame();
+    }, {passive:false});
+  });
+
+  // Keyboard
+  document.addEventListener('keydown', function(e){
+    if(e.code==='Space'||e.code==='ArrowUp'){
+      e.preventDefault(); doJump();
     }
   });
-  canvas.addEventListener('click', () => { if (state === 'playing') jump(); });
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); if (state === 'playing') jump(); });
 
-  // Initial draw
-  resize();
-  initGame();
-  drawBg();
-  drawGround();
-  drawMikey(120 * SCALE(), GROUND(), false);
+  // Canvas tap = jump while playing
+  canvas.addEventListener('touchstart', function(e){
+    e.preventDefault();
+    if(state==='playing') doJump();
+  },{passive:false});
+  canvas.addEventListener('click', function(){
+    if(state==='playing') doJump();
+  });
 
-})();
+  // Init draw
+  drawIdle();
+}();
 </script>
 
 <footer>
