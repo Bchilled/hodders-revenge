@@ -7,38 +7,42 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Permanent+Marker&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #00ff41;
+    --green: #00cc33;
     --purple: #9b00ff;
     --slime: #7fff00;
-    --sewer: #1a2a1a;
-    --dark: #080f08;
+    --sewer: #1a0a0a;
+    --dark: #0a0404;
     --orange: #ff6a00;
-    --red: #ff003c;
+    --red: #cc0022;
+    --red-bright: #ff1a3c;
+    --red-glow: #ff003c;
     --blue: #00c3ff;
     --yellow: #ffe600;
     --shell-brown: #8b6914;
+    --bandana: #cc0022;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     background: var(--dark);
-    color: #d4f5d4;
+    color: #f5d4d4;
     font-family: 'Rajdhani', sans-serif;
     overflow-x: hidden;
     cursor: crosshair;
   }
 
-  /* SEWER PIPE BACKGROUND */
+  /* SEWER PIPE BACKGROUND — RAPH RED */
   body::before {
     content: '';
     position: fixed;
     inset: 0;
     background: 
-      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(0,255,65,0.03) 60px, rgba(0,255,65,0.03) 61px),
-      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,255,65,0.03) 60px, rgba(0,255,65,0.03) 61px),
-      radial-gradient(ellipse at 20% 50%, rgba(0,100,20,0.15) 0%, transparent 60%),
-      radial-gradient(ellipse at 80% 20%, rgba(155,0,255,0.1) 0%, transparent 50%);
+      repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(200,0,30,0.04) 60px, rgba(200,0,30,0.04) 61px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(200,0,30,0.03) 60px, rgba(200,0,30,0.03) 61px),
+      radial-gradient(ellipse at 20% 50%, rgba(120,0,20,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(180,0,30,0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 100%, rgba(80,0,10,0.3) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
   }
@@ -62,9 +66,9 @@
     position: absolute;
     inset: 0;
     background: 
-      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,255,65,0.08) 0%, transparent 70%),
-      radial-gradient(circle at 10% 80%, rgba(155,0,255,0.2) 0%, transparent 40%),
-      radial-gradient(circle at 90% 10%, rgba(0,195,255,0.15) 0%, transparent 40%);
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(200,0,30,0.12) 0%, transparent 70%),
+      radial-gradient(circle at 10% 80%, rgba(180,0,20,0.25) 0%, transparent 40%),
+      radial-gradient(circle at 90% 10%, rgba(150,0,15,0.2) 0%, transparent 40%);
     animation: breathe 6s ease-in-out infinite;
   }
 
@@ -74,50 +78,52 @@
   }
 
   .sewer-drip {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 3px;
-    background: linear-gradient(180deg, transparent, var(--green), var(--slime));
+    background: linear-gradient(180deg, transparent, #aa0020, #ff1a3c);
     border-radius: 0 0 50% 50%;
     animation: drip linear infinite;
-    opacity: 0.6;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 0;
   }
 
   @keyframes drip {
     0% { transform: translateY(-100px); opacity: 0; }
-    10% { opacity: 0.6; }
-    90% { opacity: 0.6; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
     100% { transform: translateY(100vh); opacity: 0; }
   }
 
-  .eyeball {
-    position: absolute;
-    width: 60px;
-    height: 60px;
-    background: white;
-    border-radius: 50%;
-    border: 3px solid var(--green);
-    box-shadow: 0 0 20px var(--green);
-    animation: float 4s ease-in-out infinite;
-    overflow: hidden;
+  /* SAI DECORATIONS */
+  .sai-deco {
+    position: fixed;
+    font-size: 4rem;
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+    animation: sai-float 8s ease-in-out infinite;
+    color: var(--red-bright);
+    filter: drop-shadow(0 0 10px var(--red));
   }
 
-  .eyeball::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 25px;
-    background: #1a0030;
-    border-radius: 50%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    box-shadow: 0 0 10px var(--purple);
+  @keyframes sai-float {
+    0%, 100% { transform: translateY(0) rotate(var(--rot)); }
+    50% { transform: translateY(-15px) rotate(var(--rot)); }
   }
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
+  /* BANDANA SVG LOGO */
+  .bandana-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+
+  .bandana-svg {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
   }
 
   .tag-raph {
@@ -147,25 +153,25 @@
     font-size: clamp(3rem, 12vw, 9rem);
     line-height: 0.9;
     letter-spacing: 0.05em;
-    background: linear-gradient(135deg, var(--green) 0%, var(--slime) 30%, var(--yellow) 60%, var(--orange) 100%);
+    background: linear-gradient(135deg, #ff1a3c 0%, #cc0022 40%, #ff6a00 80%, #ff1a3c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-shadow: none;
-    filter: drop-shadow(0 0 30px rgba(0,255,65,0.5));
+    filter: drop-shadow(0 0 40px rgba(200,0,30,0.7));
     animation: titlePulse 3s ease-in-out infinite;
   }
 
   @keyframes titlePulse {
-    0%, 100% { filter: drop-shadow(0 0 30px rgba(0,255,65,0.5)); }
-    50% { filter: drop-shadow(0 0 60px rgba(0,255,65,0.9)) drop-shadow(0 0 120px rgba(127,255,0,0.3)); }
+    0%, 100% { filter: drop-shadow(0 0 30px rgba(200,0,30,0.6)); }
+    50% { filter: drop-shadow(0 0 70px rgba(255,0,40,1)) drop-shadow(0 0 120px rgba(200,0,20,0.5)); }
   }
 
   .subtitle {
     font-family: 'Permanent Marker', cursive;
     font-size: clamp(1rem, 4vw, 2rem);
-    color: var(--purple);
-    text-shadow: 0 0 30px var(--purple), 0 0 60px rgba(155,0,255,0.5);
+    color: #ff6a00;
+    text-shadow: 0 0 30px rgba(255,106,0,0.8), 0 0 60px rgba(200,0,20,0.4);
     margin-top: 0.5rem;
     letter-spacing: 0.1em;
   }
@@ -175,9 +181,11 @@
     margin: 2rem auto 0;
     font-size: 1.2rem;
     line-height: 1.7;
-    color: rgba(212,245,212,0.8);
-    border-left: 3px solid var(--green);
+    color: rgba(245,212,212,0.8);
+    border-left: 3px solid var(--red-bright);
     padding-left: 1.5rem;
+    text-align: left;
+  }
     text-align: left;
   }
 
@@ -224,7 +232,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    color: rgba(212,245,212,0.4);
+    color: rgba(245,212,212,0.4);
     font-size: 0.85rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -234,8 +242,8 @@
   .scroll-arrow {
     width: 30px;
     height: 30px;
-    border-right: 2px solid var(--green);
-    border-bottom: 2px solid var(--green);
+    border-right: 2px solid var(--red-bright);
+    border-bottom: 2px solid var(--red-bright);
     transform: rotate(45deg);
     animation: bounce 1.5s infinite;
   }
@@ -262,16 +270,16 @@
   .section-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(2.5rem, 6vw, 5rem);
-    color: var(--green);
+    color: var(--red-bright);
     letter-spacing: 0.05em;
-    text-shadow: 0 0 30px rgba(0,255,65,0.4);
+    text-shadow: 0 0 30px rgba(200,0,30,0.5);
     margin-bottom: 0.5rem;
   }
 
   .section-line {
     width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--green), var(--purple));
+    background: linear-gradient(90deg, var(--red-bright), #ff6a00);
     margin-bottom: 2.5rem;
     border-radius: 2px;
   }
@@ -284,7 +292,7 @@
   }
 
   .pitch-card {
-    background: rgba(0,255,65,0.04);
+    background: rgba(200,0,30,0.04);
     border: 1px solid rgba(0,255,65,0.2);
     border-radius: 8px;
     padding: 1.8rem;
@@ -298,14 +306,14 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 3px;
-    background: linear-gradient(90deg, var(--green), var(--purple));
+    background: linear-gradient(90deg, var(--red-bright), #ff6a00);
   }
 
   .pitch-card:hover {
-    border-color: var(--green);
+    border-color: var(--red-bright);
     transform: translateY(-5px);
-    box-shadow: 0 15px 40px rgba(0,255,65,0.15);
-    background: rgba(0,255,65,0.07);
+    box-shadow: 0 15px 40px rgba(200,0,30,0.2);
+    background: rgba(200,0,30,0.07);
   }
 
   .pitch-icon {
@@ -317,7 +325,7 @@
   .pitch-card h3 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.6rem;
-    color: var(--green);
+    color: var(--red-bright);
     margin-bottom: 0.7rem;
     letter-spacing: 0.05em;
   }
@@ -325,7 +333,7 @@
   .pitch-card p {
     font-size: 1rem;
     line-height: 1.7;
-    color: rgba(212,245,212,0.75);
+    color: rgba(245,212,212,0.75);
   }
 
   /* COMMANDERS SECTION */
@@ -404,7 +412,7 @@
   .commander-card .flavor {
     font-size: 1.05rem;
     line-height: 1.8;
-    color: rgba(212,245,212,0.8);
+    color: rgba(245,212,212,0.8);
   }
 
   .stat-row {
@@ -459,32 +467,32 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1rem;
     letter-spacing: 0.15em;
-    color: rgba(212,245,212,0.5);
+    color: rgba(245,212,212,0.5);
     text-align: left;
     padding: 0.6rem 1rem;
-    border-bottom: 1px solid rgba(0,255,65,0.15);
+    border-bottom: 1px solid rgba(200,0,30,0.2);
   }
 
   .card-table td {
     padding: 0.7rem 1rem;
-    border-bottom: 1px solid rgba(0,255,65,0.07);
+    border-bottom: 1px solid rgba(200,0,30,0.1);
     vertical-align: middle;
   }
 
   .card-table tr:hover td {
-    background: rgba(0,255,65,0.04);
+    background: rgba(200,0,30,0.04);
   }
 
   .card-table a {
-    color: var(--green);
+    color: #ff6655;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s, text-shadow 0.2s;
   }
 
   .card-table a:hover {
-    color: var(--slime);
-    text-shadow: 0 0 10px var(--green);
+    color: #ff9988;
+    text-shadow: 0 0 10px var(--red-bright);
   }
 
   .price-tag {
@@ -506,10 +514,10 @@
   .buy-btn {
     display: inline-block;
     padding: 0.35rem 0.9rem;
-    background: rgba(0,255,65,0.1);
-    border: 1px solid var(--green);
+    background: rgba(200,0,30,0.1);
+    border: 1px solid var(--red-bright);
     border-radius: 4px;
-    color: var(--green);
+    color: #ff6655;
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -519,15 +527,15 @@
   }
 
   .buy-btn:hover {
-    background: var(--green);
-    color: var(--dark);
-    box-shadow: 0 0 20px var(--green);
+    background: var(--red-bright);
+    color: #fff;
+    box-shadow: 0 0 20px var(--red-bright);
   }
 
   /* TOTALS */
   .total-bar {
-    background: rgba(0,255,65,0.06);
-    border: 1px solid rgba(0,255,65,0.25);
+    background: rgba(200,0,30,0.06);
+    border: 1px solid rgba(200,0,30,0.3);
     border-radius: 8px;
     padding: 1.5rem 2rem;
     display: flex;
@@ -542,7 +550,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.8rem;
     letter-spacing: 0.1em;
-    color: rgba(212,245,212,0.6);
+    color: rgba(245,212,212,0.6);
   }
 
   .total-bar .amount {
@@ -554,7 +562,7 @@
 
   .total-bar .note {
     font-size: 0.85rem;
-    color: rgba(212,245,212,0.4);
+    color: rgba(245,212,212,0.4);
     letter-spacing: 0.1em;
   }
 
@@ -564,9 +572,9 @@
     z-index: 1;
     text-align: center;
     padding: 3rem 2rem;
-    border-top: 1px solid rgba(0,255,65,0.1);
+    border-top: 1px solid rgba(200,0,30,0.15);
     font-size: 0.9rem;
-    color: rgba(212,245,212,0.3);
+    color: rgba(245,212,212,0.3);
     letter-spacing: 0.15em;
     text-transform: uppercase;
   }
@@ -588,15 +596,15 @@
     padding: 1rem 2rem;
     background: rgba(8,15,8,0.85);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,255,65,0.1);
+    border-bottom: 1px solid rgba(200,0,30,0.15);
   }
 
   .nav-logo {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.4rem;
-    color: var(--green);
+    color: var(--red-bright);
     letter-spacing: 0.15em;
-    text-shadow: 0 0 15px rgba(0,255,65,0.5);
+    text-shadow: 0 0 15px rgba(200,0,30,0.7);
   }
 
   .nav-links {
@@ -606,7 +614,7 @@
   }
 
   .nav-links a {
-    color: rgba(212,245,212,0.6);
+    color: rgba(245,212,212,0.6);
     text-decoration: none;
     font-size: 0.9rem;
     letter-spacing: 0.1em;
@@ -614,7 +622,7 @@
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--green); }
+  .nav-links a:hover { color: var(--red-bright); }
 
   /* DIVIDER */
   .sewer-divider {
@@ -622,7 +630,7 @@
     z-index: 1;
     text-align: center;
     padding: 2rem 0;
-    color: rgba(0,255,65,0.2);
+    color: rgba(200,0,30,0.3);
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 0.5em;
     font-size: 1.2rem;
@@ -636,7 +644,7 @@
     top: 50%;
     width: 40%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,255,65,0.3));
+    background: linear-gradient(90deg, transparent, rgba(200,0,30,0.4));
   }
 
   .sewer-divider::before { left: 0; }
@@ -649,7 +657,7 @@
 
   .search-note {
     font-size: 0.85rem;
-    color: rgba(212,245,212,0.4);
+    color: rgba(245,212,212,0.4);
     font-style: italic;
     margin-top: 0.5rem;
   }
@@ -665,7 +673,7 @@
     -webkit-appearance: none;
     width: 28px;
     height: 28px;
-    border: 2px solid rgba(0,255,65,0.3);
+    border: 2px solid rgba(200,0,30,0.4);
     border-radius: 6px;
     background: rgba(0,0,0,0.4);
     cursor: pointer;
@@ -676,9 +684,9 @@
   }
 
   .card-check:checked {
-    background: var(--green);
-    border-color: var(--green);
-    box-shadow: 0 0 12px rgba(0,255,65,0.5);
+    background: var(--red-bright);
+    border-color: var(--red-bright);
+    box-shadow: 0 0 12px rgba(200,0,30,0.6);
   }
 
   .card-check:checked::after {
@@ -686,7 +694,7 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--dark);
+    color: #fff;
     font-size: 1rem;
     font-weight: 900;
     line-height: 1;
@@ -715,15 +723,15 @@
 
   .progress-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--green), var(--slime));
+    background: linear-gradient(90deg, var(--red-bright), #ff6a00);
     border-radius: 20px;
     transition: width 0.4s ease;
-    box-shadow: 0 0 10px var(--green);
+    box-shadow: 0 0 10px var(--red-bright);
   }
 
   .progress-tracker {
     background: rgba(0,0,0,0.5);
-    border: 1px solid rgba(0,255,65,0.2);
+    border: 1px solid rgba(200,0,30,0.25);
     border-radius: 10px;
     padding: 1.2rem 1.5rem;
     margin-bottom: 2rem;
@@ -736,7 +744,7 @@
   .progress-tracker .prog-label {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 1.3rem;
-    color: var(--green);
+    color: var(--red-bright);
     letter-spacing: 0.1em;
     white-space: nowrap;
   }
@@ -776,34 +784,72 @@
 
 <!-- DRIPPING SEWER EFFECT -->
 <script>
-  for (let i = 0; i < 12; i++) {
+  // Red blood drips
+  for (let i = 0; i < 10; i++) {
     const drip = document.createElement('div');
     drip.className = 'sewer-drip';
     drip.style.left = Math.random() * 100 + '%';
-    drip.style.height = (30 + Math.random() * 80) + 'px';
-    drip.style.animationDuration = (3 + Math.random() * 8) + 's';
-    drip.style.animationDelay = (Math.random() * 5) + 's';
+    drip.style.height = (20 + Math.random() * 60) + 'px';
+    drip.style.animationDuration = (4 + Math.random() * 10) + 's';
+    drip.style.animationDelay = (Math.random() * 6) + 's';
     document.body.appendChild(drip);
   }
 
-  const eyePositions = [{top:'15%',left:'5%'},{top:'70%',left:'92%'},{top:'40%',left:'95%'}];
-  eyePositions.forEach(pos => {
-    const eye = document.createElement('div');
-    eye.className = 'eyeball';
-    eye.style.top = pos.top;
-    eye.style.left = pos.left;
-    eye.style.animationDelay = Math.random() * 3 + 's';
-    document.body.appendChild(eye);
+  // Sai decorations in corners
+  const sais = [
+    {top:'8%', left:'2%', rot:'30deg'},
+    {top:'80%', left:'94%', rot:'-45deg'},
+    {top:'45%', left:'96%', rot:'15deg'},
+    {top:'20%', right:'3%', rot:'-20deg'},
+  ];
+  sais.forEach(pos => {
+    const s = document.createElement('div');
+    s.className = 'sai-deco';
+    s.textContent = '⚔';
+    s.style.top = pos.top;
+    s.style.left = pos.left || 'auto';
+    s.style.right = pos.right || 'auto';
+    s.style.setProperty('--rot', pos.rot);
+    s.style.animationDelay = Math.random() * 4 + 's';
+    document.body.appendChild(s);
   });
 </script>
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">🐢 Hodder's Revenge</div>
+  <div class="bandana-logo">
+    <!-- Raph red bandana SVG -->
+    <svg class="bandana-svg" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <!-- Turtle head base -->
+      <ellipse cx="30" cy="32" rx="20" ry="18" fill="#3a7a3a"/>
+      <!-- Shell highlight -->
+      <ellipse cx="30" cy="32" rx="14" ry="12" fill="#2d5e2d" opacity="0.5"/>
+      <!-- Red bandana across eyes -->
+      <rect x="8" y="22" width="44" height="10" rx="3" fill="#cc0022"/>
+      <!-- Bandana knot/tails on right -->
+      <path d="M52 24 Q62 20 64 27 Q62 34 52 32 Z" fill="#aa0018"/>
+      <path d="M52 26 Q58 18 65 22" stroke="#aa0018" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M52 30 Q60 34 64 30" stroke="#aa0018" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <!-- Eyes (white showing through bandana slits) -->
+      <ellipse cx="23" cy="27" rx="4" ry="3" fill="white" opacity="0.9"/>
+      <ellipse cx="37" cy="27" rx="4" ry="3" fill="white" opacity="0.9"/>
+      <ellipse cx="23" cy="27" rx="2" ry="2" fill="#1a0000"/>
+      <ellipse cx="37" cy="27" rx="2" ry="2" fill="#1a0000"/>
+      <!-- Angry brow lines -->
+      <line x1="19" y1="23" x2="27" y2="25" stroke="#1a0000" stroke-width="2" stroke-linecap="round"/>
+      <line x1="41" y1="23" x2="33" y2="25" stroke="#1a0000" stroke-width="2" stroke-linecap="round"/>
+      <!-- Sai silhouette below -->
+      <path d="M24 44 L26 52 L28 44 M26 44 L26 40" stroke="#cc0022" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M36 44 L34 52 L32 44 M34 44 L34 40" stroke="#cc0022" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="nav-logo">HODDER'S REVENGE</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#deck">The Deck</a></li>
     <li><a href="#commanders">Commanders</a></li>
+    <li><a href="#decklist">Deck List</a></li>
     <li><a href="#buylist">Buy List</a></li>
+    <li><a href="#game" style="color:#ff6a00;">🍕 GAME</a></li>
   </ul>
 </nav>
 
@@ -817,8 +863,8 @@
     Every pizza slice earned in blood. <strong>Cowabunga, motherf***er.</strong>
   </p>
   <div class="commander-badges">
-    <a class="badge badge-leo" href="#commanders">🗡️ Leonardo, Sewer King</a>
-    <a class="badge badge-raph" href="#commanders">🔱 Raphael, Crimson Leader</a>
+    <a class="badge badge-leo" href="#commanders">⚖️ Leonardo, The Balance</a>
+    <a class="badge badge-raph" href="#commanders">💪 Raphael, The Muscle</a>
   </div>
   <div class="scroll-cta">
     <span>Scroll Down</span>
@@ -872,39 +918,178 @@
   <div class="section-line"></div>
   <div class="commanders-split">
     <div class="commander-card commander-leo">
-      <div class="name">Leonardo<br>Sewer King</div>
-      <div class="role">The Strategist · Commander · Blue/Green</div>
-      <p class="flavor">
-        Leo doesn't fight with rage — he fights with a plan. Sewer King represents the endgame: every Turtle token, every technique, every counter is one move in a 10-turn winning sequence only Leo saw coming. He's the reason your opponents are dead before they know it.
-      </p>
-      <div class="stat-row">
-        <span class="stat" style="color:var(--blue)">WUBRG Commander</span>
-        <span class="stat">Token Generator</span>
-        <span class="stat">Value Engine</span>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;">
+        <a href="https://scryfall.com/card/tmnt/1/leonardo-sewer-king" target="_blank" style="flex-shrink:0;">
+          <img src="https://cards.scryfall.io/normal/front/0/2/02b2a0cf-5d57-4c0e-bd49-43424c5fdab9.jpg" 
+               alt="Leonardo, Sewer King" 
+               style="width:140px;border-radius:8px;border:2px solid rgba(0,195,255,0.4);box-shadow:0 0 20px rgba(0,195,255,0.3);transition:transform 0.2s;"
+               onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <div style="flex:1;min-width:180px;">
+          <div class="name">Leonardo<br>The Balance</div>
+          <div class="role">The Strategist · Legendary Creature — Turtle Ninja</div>
+          <div style="margin:0.6rem 0;font-size:0.9rem;color:rgba(245,212,212,0.5);letter-spacing:0.1em;">WUBRG · 3/5</div>
+          <p class="flavor">Leo is the glue. Every Turtle token, every technique, every combo line runs through his calm. He doesn't win loud — he wins before you know you've lost. The Balance keeps the whole deck breathing when Raph charges in too hot.</p>
+          <div class="stat-row">
+            <span class="stat" style="color:var(--blue)">5-Color</span>
+            <span class="stat">Token Engine</span>
+            <span class="stat">The Anchor</span>
+          </div>
+          <a href="https://scryfall.com/card/tmnt/1/leonardo-sewer-king" target="_blank" style="display:inline-block;margin-top:0.8rem;color:var(--blue);font-size:0.85rem;letter-spacing:0.1em;text-decoration:none;border-bottom:1px solid rgba(0,195,255,0.3);">View on Scryfall ↗</a>
+        </div>
       </div>
     </div>
     <div class="commander-card commander-raph">
-      <div class="name">Raphael<br>Crimson Leader</div>
-      <div class="role">The Berserker · Commander · Red/Green</div>
-      <p class="flavor">
-        Raph hits first and asks questions never. Crimson Leader gives every angry swing purpose: his triggers generate the cannon fodder Leo uses to close games. Pair him with Raph's Jitte and Waves of Aggression and you've got a one-turtle wrecking crew that never runs dry.
-      </p>
-      <div class="stat-row">
-        <span class="stat" style="color:var(--red)">Gruul Commander</span>
-        <span class="stat">Combat Aggressor</span>
-        <span class="stat">Token Swarm</span>
+      <div style="display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap;">
+        <a href="https://scryfall.com/card/tmnt/4/raphael-crimson-leader" target="_blank" style="flex-shrink:0;">
+          <img src="https://cards.scryfall.io/normal/front/9/e/9e1c3c22-1a95-4c3b-9b2e-5c2d8f9ed4a8.jpg" 
+               alt="Raphael, Crimson Leader"
+               style="width:140px;border-radius:8px;border:2px solid rgba(255,0,60,0.4);box-shadow:0 0 20px rgba(255,0,60,0.3);transition:transform 0.2s;"
+               onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"
+               onerror="this.style.display='none'">
+        </a>
+        <div style="flex:1;min-width:180px;">
+          <div class="name">Raphael<br>The Muscle</div>
+          <div class="role">The Berserker · Legendary Creature — Turtle Ninja</div>
+          <div style="margin:0.6rem 0;font-size:0.9rem;color:rgba(245,212,212,0.5);letter-spacing:0.1em;">RG · 4/3 Trample, Haste</div>
+          <p class="flavor">Raph is the answer to everything. Trample, haste, raw power — The Muscle exists to hit first, hit hard, and let the board know this deck is serious. Feed him Raph's Jitte, point him at faces, never apologize.</p>
+          <div class="stat-row">
+            <span class="stat" style="color:var(--red)">Gruul</span>
+            <span class="stat">Haste / Trample</span>
+            <span class="stat">The Muscle</span>
+          </div>
+          <a href="https://scryfall.com/card/tmnt/4/raphael-crimson-leader" target="_blank" style="display:inline-block;margin-top:0.8rem;color:var(--red);font-size:0.85rem;letter-spacing:0.1em;text-decoration:none;border-bottom:1px solid rgba(255,0,60,0.3);">View on Scryfall ↗</a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="sewer-divider">— buy list —</div>
+<div class="sewer-divider">— full deck list —</div>
+
+<section id="decklist">
+  <div class="section-title">Full Deck List</div>
+  <div class="section-line"></div>
+  <p style="color:rgba(245,212,212,0.6);margin-bottom:2rem;">Every card in the 99 — click any card to view on Scryfall.</p>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0.4rem;">
+
+    <a class="dl-row" href="https://scryfall.com/search?q=Leonardo+Sewer+King" target="_blank">Leonardo, Sewer King <span>CMD</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Raphael+Crimson+Leader" target="_blank">Raphael, Crimson Leader <span>CMD</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Agatha%27s+Soul+Cauldron" target="_blank">Agatha's Soul Cauldron <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=All+Will+Be+One" target="_blank">All Will Be One <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Arcade+Cabinet+magic" target="_blank">Arcade Cabinet <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Arcane+Signet" target="_blank">Arcane Signet <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Big+Mother+Mouser" target="_blank">Big Mother Mouser <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Brainstorm" target="_blank">Brainstorm <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Casey+Jones+Asphalt+Hooligan" target="_blank">Casey Jones, Asphalt Hooligan <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Casey+Jones+Back+Alley+Brute" target="_blank">Casey Jones, Back Alley Brute <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Chromatic+Lantern" target="_blank">Chromatic Lantern <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Commander%27s+Plate" target="_blank">Commander's Plate <span>EQP</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Command+Tower" target="_blank">Command Tower <span>LND</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Cool+but+Rude+magic" target="_blank">Cool but Rude <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Cultivate" target="_blank">Cultivate <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Dark+Ritual" target="_blank">Dark Ritual <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Donatello%27s+Technique" target="_blank">Donatello's Technique <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Doubling+Season" target="_blank">Doubling Season <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Everything+Pizza+magic" target="_blank">Everything Pizza <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Food+Chain" target="_blank">Food Chain <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Foot+Chopper+magic" target="_blank">Foot Chopper <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Frog+Butler+magic" target="_blank">Frog Butler <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Groundchuck+Dirtbag" target="_blank">Groundchuck & Dirtbag <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Harmonize" target="_blank">Harmonize <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Here+Comes+a+New+Hero" target="_blank">Here Comes a New Hero! <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Heroes+in+a+Half+Shell" target="_blank">Heroes in a Half Shell <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=High+Score+magic" target="_blank">High Score <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Humongous+Fungus+magic" target="_blank">Humongous Fungus <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Ice+Cream+Kitty+magic" target="_blank">Ice Cream Kitty <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Improvised+Arsenal+magic" target="_blank">Improvised Arsenal <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Leader%27s+Talent+magic" target="_blank">Leader's Talent <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Leo%27s+Guidance+magic" target="_blank">Leo's Guidance <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Level+Up+magic+tmnt" target="_blank">Level Up <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Metallic+Mimic" target="_blank">Metallic Mimic <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Michelangelo+Weirdness+to+11" target="_blank">Michelangelo, Weirdness to 11 <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Mikey+Don+Party+Planners" target="_blank">Mikey & Don, Party Planners <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Mikey+Leo+Chaos+Order" target="_blank">Mikey & Leo, Chaos & Order <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Mona+Lisa+Ever+Adaptable" target="_blank">Mona Lisa, Ever Adaptable <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Mona+Lisa+Science+Geek" target="_blank">Mona Lisa, Science Geek <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Mutagen+Man+Living+Ooze" target="_blank">Mutagen Man, Living Ooze <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=New+Generation%27s+Technique" target="_blank">New Generation's Technique <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Ninja+Teen+magic" target="_blank">Ninja Teen <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Novel+Nunchaku+magic" target="_blank">Novel Nunchaku <span>EQP</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Parallel+Lives" target="_blank">Parallel Lives <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Pizza+Face+Gastromancer" target="_blank">Pizza Face, Gastromancer <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Raph+Leo+Sibling+Rivals" target="_blank">Raph & Leo, Sibling Rivals <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Raphael+Tag+Team+Tough" target="_blank">Raphael, Tag Team Tough <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Raphael%27s+Technique" target="_blank">Raphael's Technique <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Raph%27s+Jitte+magic" target="_blank">Raph's Jitte <span>EQP</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Ray+Fillet+Man+Ray" target="_blank">Ray Fillet, Man Ray <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Ronin%27s+Arsenal+magic" target="_blank">Ronin's Arsenal <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Shellshock+magic+tmnt" target="_blank">Shellshock <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Skateboard+magic" target="_blank">Skateboard <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Sol+Ring" target="_blank">Sol Ring <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Special+Move+magic+tmnt" target="_blank">Special Move <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Study+the+Classics+magic" target="_blank">Study the Classics <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Super+Combo+magic+tmnt" target="_blank">Super Combo <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Sword+of+Hearth+and+Home" target="_blank">Sword of Hearth and Home <span>EQP</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Teleportation+Circle" target="_blank">Teleportation Circle <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=The+Cloning+of+Shredder" target="_blank">The Cloning of Shredder <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=The+Ooze+magic" target="_blank">The Ooze <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Transdimensional+Bovine" target="_blank">Transdimensional Bovine <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Trouble+in+Pairs+magic" target="_blank">Trouble in Pairs <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Turtle+Power+magic" target="_blank">Turtle Power! <span>SOR</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Turtle+Tracks+magic" target="_blank">Turtle Tracks <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Turtle+Van+magic" target="_blank">Turtle Van <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Underworld+Breach" target="_blank">Underworld Breach <span>ENC</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Venus+Torn+Between+Worlds" target="_blank">Venus, Torn Between Worlds <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Waves+of+Aggression" target="_blank">Waves of Aggression <span>INS</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Weather+Maker+magic" target="_blank">Weather Maker <span>CRE</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Wooden+Cane+magic" target="_blank">Wooden Cane <span>ART</span></a>
+    <a class="dl-row" href="https://scryfall.com/search?q=Yuriko+the+Tiger%27s+Shadow" target="_blank">Yuriko, the Tiger's Shadow <span>CRE</span></a>
+
+  </div>
+
+  <div style="margin-top:2rem;padding:1.2rem 1.5rem;background:rgba(0,255,65,0.05);border:1px solid rgba(0,255,65,0.2);border-radius:8px;display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--green);letter-spacing:0.1em;">🔍 Full Scryfall Search</span>
+    <a href="https://scryfall.com/search?q=set%3Atmnt" target="_blank" class="buy-btn">Browse All TMNT Cards ↗</a>
+    <a href="https://www.moxfield.com/search" target="_blank" class="buy-btn" style="border-color:var(--purple);color:var(--purple);">Build on Moxfield ↗</a>
+  </div>
+</section>
+
+<style>
+  .dl-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.55rem 0.9rem;
+    background: rgba(0,0,0,0.25);
+    border: 1px solid rgba(200,0,30,0.12);
+    border-radius: 5px;
+    color: rgba(212,245,212,0.85);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .dl-row:hover {
+    background: rgba(0,255,65,0.08);
+    border-color: rgba(200,0,30,0.5);
+    color: var(--red-bright);
+    transform: translateX(4px);
+  }
+  .dl-row span {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: rgba(245,212,212,0.3);
+    font-family: 'Bebas Neue', sans-serif;
+  }
+</style>
 
 <!-- BUY LIST -->
 <section id="buylist">
   <div class="section-title">Cheapest Buy List</div>
   <div class="section-line"></div>
-  <p style="color:rgba(212,245,212,0.6); margin-bottom:0.5rem;">Cards grouped by cheapest Canadian store. Search links open directly to each card. Prices are approximate — check live stock at time of purchase.</p>
+  <p style="color:rgba(245,212,212,0.6); margin-bottom:0.5rem;">Cards grouped by cheapest Canadian store. Search links open directly to each card. Prices are approximate — check live stock at time of purchase.</p>
   <p class="search-note">⚠️ Live prices fluctuate. All links open store search results for each card.</p>
 
   <div class="progress-tracker" style="margin-top:1.5rem;">
@@ -922,7 +1107,7 @@
   <div class="store-section" style="margin-top:3rem;">
     <div class="store-header">
       <span class="store-badge store-401">401 Games</span>
-      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">401games.ca · Toronto, ON</span>
+      <span style="color:rgba(245,212,212,0.5); font-size:0.9rem;">401games.ca · Toronto, ON</span>
     </div>
     <table class="card-table">
       <thead>
@@ -961,7 +1146,7 @@
   <div class="store-section" style="margin-top:3rem;">
     <div class="store-header">
       <span class="store-badge store-f2f">Face to Face Games</span>
-      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">facetofacegames.com</span>
+      <span style="color:rgba(245,212,212,0.5); font-size:0.9rem;">facetofacegames.com</span>
     </div>
     <table class="card-table">
       <thead>
@@ -997,7 +1182,7 @@
   <div class="store-section" style="margin-top:3rem;">
     <div class="store-header">
       <span class="store-badge store-etb">Enter the Battlefield</span>
-      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">enterthebattlefield.ca</span>
+      <span style="color:rgba(245,212,212,0.5); font-size:0.9rem;">enterthebattlefield.ca</span>
     </div>
     <table class="card-table">
       <thead>
@@ -1039,7 +1224,7 @@
   <div class="store-section" style="margin-top:3rem;">
     <div class="store-header">
       <span class="store-badge store-ht">Hairy Tarantula</span>
-      <span style="color:rgba(212,245,212,0.5); font-size:0.9rem;">hairytarantula.com · Toronto, ON</span>
+      <span style="color:rgba(245,212,212,0.5); font-size:0.9rem;">hairytarantula.com · Toronto, ON</span>
     </div>
     <table class="card-table">
       <thead>
@@ -1084,14 +1269,511 @@
       <div class="amount">~$350–$450 CAD</div>
     </div>
     <div style="max-width:300px;">
-      <p style="color:rgba(212,245,212,0.5); font-size:0.85rem; line-height:1.6;">Big tickets: Food Chain (~$45), Doubling Season (~$50), Underworld Breach (~$18), Parallel Lives (~$20). Budget swaps available on request.</p>
+      <p style="color:rgba(245,212,212,0.5); font-size:0.85rem; line-height:1.6;">Big tickets: Food Chain (~$45), Doubling Season (~$50), Underworld Breach (~$18), Parallel Lives (~$20). Budget swaps available on request.</p>
     </div>
   </div>
 </section>
 
+
+<div class="sewer-divider">— mikey's pizza run —</div>
+
+<section id="game" style="max-width:900px;margin:0 auto;padding:3rem 1rem;">
+  <div class="section-title">🍕 Mikey's Pizza Run</div>
+  <div class="section-line"></div>
+  <p style="color:rgba(245,212,212,0.6);margin-bottom:1.5rem;">Help Mikey skate through New York — dodge Foot Clan ninjas &amp; trash cans, grab pizzas for points. Tap/click to jump!</p>
+
+  <div id="game-wrap" style="position:relative;border:3px solid rgba(200,0,30,0.5);border-radius:12px;overflow:hidden;background:#1a0a0a;box-shadow:0 0 40px rgba(200,0,30,0.2);">
+
+    <!-- HUD -->
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:0.6rem 1.2rem;background:rgba(0,0,0,0.6);border-bottom:1px solid rgba(200,0,30,0.3);">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:#ff6a00;letter-spacing:0.15em;">🍕 PIZZA RUN</span>
+      <span id="g-score" style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#ffe600;text-shadow:0 0 10px rgba(255,230,0,0.5);">0</span>
+      <span id="g-hi" style="font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:rgba(245,212,212,0.4);">HI: 0</span>
+    </div>
+
+    <!-- CANVAS -->
+    <canvas id="gameCanvas" style="display:block;width:100%;image-rendering:pixelated;"></canvas>
+
+    <!-- OVERLAY -->
+    <div id="g-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,4,4,0.85);z-index:10;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,4rem);color:#ff1a3c;text-shadow:0 0 30px rgba(255,0,40,0.8);letter-spacing:0.1em;">COWABUNGA!</div>
+      <div id="g-msg" style="font-family:'Permanent Marker',cursive;color:#ff6a00;font-size:1.2rem;margin:0.5rem 0 2rem;">Tap to start skating</div>
+      <button id="g-startbtn" style="font-family:'Bebas Neue',sans-serif;font-size:2rem;padding:1rem 3rem;background:#cc0022;color:white;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.15em;box-shadow:0 0 30px rgba(200,0,30,0.6);transition:transform 0.1s;" ontouchstart="this.style.transform='scale(0.95)'" ontouchend="this.style.transform='scale(1)'">
+        🛹 SKATE!
+      </button>
+    </div>
+
+    <!-- MOBILE JUMP BUTTON -->
+    <div style="display:flex;gap:1rem;padding:1rem;background:rgba(0,0,0,0.5);border-top:1px solid rgba(200,0,30,0.3);justify-content:center;">
+      <button id="g-jump" style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;padding:1rem 4rem;background:linear-gradient(135deg,#cc0022,#ff6a00);color:white;border:none;border-radius:12px;cursor:pointer;letter-spacing:0.1em;box-shadow:0 6px 0 #880015,0 0 30px rgba(200,0,30,0.4);active:transform:translateY(4px);flex:1;max-width:400px;touch-action:manipulation;">
+        ⬆ JUMP
+      </button>
+    </div>
+  </div>
+
+  <p style="text-align:center;color:rgba(245,212,212,0.3);font-size:0.8rem;margin-top:0.8rem;letter-spacing:0.1em;">SPACE / TAP / CLICK = JUMP · Grab pizzas · Dodge ninjas &amp; trash</p>
+</section>
+
+<script>
+(function() {
+  const canvas = document.getElementById('gameCanvas');
+  const ctx = canvas.getContext('2d');
+  const overlay = document.getElementById('g-overlay');
+  const startBtn = document.getElementById('g-startbtn');
+  const jumpBtn = document.getElementById('g-jump');
+  const scoreEl = document.getElementById('g-score');
+  const hiEl = document.getElementById('g-hi');
+  const msgEl = document.getElementById('g-msg');
+
+  // Responsive canvas
+  function resize() {
+    const wrap = document.getElementById('game-wrap');
+    const w = wrap.clientWidth;
+    canvas.width = Math.min(w, 900);
+    canvas.height = Math.floor(canvas.width * 0.38);
+  }
+  resize();
+  window.addEventListener('resize', () => { resize(); });
+
+  const W = () => canvas.width;
+  const H = () => canvas.height;
+  const GROUND = () => H() * 0.78;
+  const SCALE = () => canvas.width / 900;
+
+  // AudioContext for sounds
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let actx = null;
+
+  function playJump() {
+    try {
+      if (!actx) actx = new AudioCtx();
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.connect(g); g.connect(actx.destination);
+      o.frequency.setValueAtTime(300, actx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(600, actx.currentTime + 0.1);
+      g.gain.setValueAtTime(0.3, actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.2);
+      o.start(); o.stop(actx.currentTime + 0.2);
+    } catch(e) {}
+  }
+
+  function playPizza() {
+    try {
+      if (!actx) actx = new AudioCtx();
+      [523, 659, 784].forEach((freq, i) => {
+        const o = actx.createOscillator();
+        const g = actx.createGain();
+        o.connect(g); g.connect(actx.destination);
+        o.type = 'triangle';
+        o.frequency.value = freq;
+        g.gain.setValueAtTime(0.2, actx.currentTime + i*0.08);
+        g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + i*0.08 + 0.15);
+        o.start(actx.currentTime + i*0.08);
+        o.stop(actx.currentTime + i*0.08 + 0.15);
+      });
+    } catch(e) {}
+  }
+
+  function playDead() {
+    try {
+      if (!actx) actx = new AudioCtx();
+      const o = actx.createOscillator();
+      const g = actx.createGain();
+      o.connect(g); g.connect(actx.destination);
+      o.frequency.setValueAtTime(400, actx.currentTime);
+      o.frequency.exponentialRampToValueAtTime(80, actx.currentTime + 0.4);
+      g.gain.setValueAtTime(0.4, actx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + 0.5);
+      o.start(); o.stop(actx.currentTime + 0.5);
+    } catch(e) {}
+  }
+
+  // Game state
+  let state = 'idle'; // idle, playing, dead
+  let score = 0, hi = 0, frame = 0, speed = 0, spawnTimer = 0;
+  let mikey, obstacles, pizzas, stars, buildings, bgOffset = 0;
+
+  // Draw functions
+  function drawMikey(x, y, jumping) {
+    const s = SCALE();
+    ctx.save();
+    ctx.translate(x, y);
+
+    // Skateboard
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(-22*s, 2*s, 44*s, 7*s);
+    ctx.fillStyle = '#ff6a00';
+    ctx.fillRect(-20*s, 0, 40*s, 4*s);
+    // Wheels
+    ctx.fillStyle = '#333';
+    [-14*s, 10*s].forEach(wx => {
+      ctx.beginPath();
+      ctx.arc(wx, 9*s, 6*s, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#888';
+      ctx.beginPath();
+      ctx.arc(wx, 9*s, 3*s, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#333';
+    });
+
+    // Body — turtle green
+    ctx.fillStyle = '#4a9e4a';
+    ctx.beginPath();
+    ctx.ellipse(0, -18*s, 13*s, 18*s, jumping ? -0.3 : 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // Shell
+    ctx.fillStyle = '#2d5e1a';
+    ctx.beginPath();
+    ctx.ellipse(4*s, -20*s, 9*s, 11*s, 0.3, 0, Math.PI*2);
+    ctx.fill();
+    ctx.strokeStyle = '#1a3a0a';
+    ctx.lineWidth = 1;
+    [[4,−24],[−1,−18],[9,−17],[4,−13]].forEach(([ex,ey]) => {
+      ctx.beginPath();
+      ctx.moveTo(4*s,-20*s);
+      ctx.lineTo(ex*s,ey*s);
+      ctx.stroke();
+    });
+
+    // Head
+    ctx.fillStyle = '#5ab35a';
+    ctx.beginPath();
+    ctx.ellipse(-6*s, -34*s, 9*s, 8*s, -0.2, 0, Math.PI*2);
+    ctx.fill();
+
+    // Orange bandana
+    ctx.fillStyle = '#ff6a00';
+    ctx.fillRect(-14*s, -39*s, 18*s, 7*s);
+    // Bandana tails
+    ctx.beginPath();
+    ctx.moveTo(4*s, -38*s);
+    ctx.lineTo(14*s, -32*s);
+    ctx.lineTo(12*s, -28*s);
+    ctx.lineTo(2*s, -34*s);
+    ctx.fill();
+
+    // Eyes
+    ctx.fillStyle = 'white';
+    ctx.beginPath(); ctx.arc(-10*s, -36*s, 4*s, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#222';
+    ctx.beginPath(); ctx.arc(-9*s, -36*s, 2.5*s, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = 'white';
+    ctx.beginPath(); ctx.arc(-8*s, -37*s, 1*s, 0, Math.PI*2); ctx.fill();
+
+    // Smile
+    ctx.strokeStyle = '#1a3a0a';
+    ctx.lineWidth = 1.5*s;
+    ctx.beginPath();
+    ctx.arc(-6*s, -32*s, 4*s, 0.2, Math.PI - 0.2);
+    ctx.stroke();
+
+    // Arm holding nunchucks
+    ctx.strokeStyle = '#4a9e4a';
+    ctx.lineWidth = 4*s;
+    ctx.beginPath();
+    ctx.moveTo(8*s, -22*s);
+    ctx.lineTo(18*s, -30*s);
+    ctx.stroke();
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(16*s, -34*s, 4*s, 10*s);
+    ctx.beginPath();
+    ctx.moveTo(18*s, -24*s);
+    ctx.lineTo(22*s, -16*s);
+    ctx.stroke();
+    ctx.fillStyle = '#8B4513';
+    ctx.fillRect(20*s, -18*s, 4*s, 9*s);
+
+    ctx.restore();
+  }
+
+  function drawObstacle(ob) {
+    const s = SCALE();
+    ctx.save();
+    ctx.translate(ob.x, GROUND());
+    if (ob.type === 'ninja') {
+      // Foot clan ninja
+      ctx.fillStyle = '#111';
+      ctx.fillRect(-10*s, -40*s, 20*s, 40*s); // body
+      ctx.fillStyle = '#222';
+      ctx.beginPath(); ctx.arc(0, -46*s, 10*s, 0, Math.PI*2); ctx.fill(); // head
+      ctx.fillStyle = '#cc0022';
+      ctx.fillRect(-12*s, -52*s, 24*s, 8*s); // headband
+      // Sword
+      ctx.strokeStyle = '#aaa';
+      ctx.lineWidth = 3*s;
+      ctx.beginPath();
+      ctx.moveTo(10*s,-35*s);
+      ctx.lineTo(28*s,-10*s);
+      ctx.stroke();
+    } else {
+      // Trash can
+      ctx.fillStyle = '#556';
+      ctx.fillRect(-12*s, -35*s, 24*s, 35*s);
+      ctx.fillStyle = '#667';
+      ctx.fillRect(-14*s, -38*s, 28*s, 8*s);
+      // Lid
+      ctx.fillStyle = '#445';
+      ctx.fillRect(-12*s, -42*s, 24*s, 6*s);
+      ctx.fillStyle = '#88ff88';
+      ctx.font = `${14*s}px sans-serif`;
+      ctx.fillText('♻', -8*s, -18*s);
+    }
+    ctx.restore();
+  }
+
+  function drawPizza(p) {
+    const s = SCALE();
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(frame * 0.05);
+    // Pizza circle
+    ctx.fillStyle = '#f5a623';
+    ctx.beginPath(); ctx.arc(0, 0, 14*s, 0, Math.PI*2); ctx.fill();
+    ctx.fillStyle = '#cc3300';
+    ctx.beginPath(); ctx.arc(0, 0, 10*s, 0, Math.PI*2); ctx.fill();
+    // Toppings
+    ctx.fillStyle = '#ffcc00';
+    [[-4,-4],[4,-3],[-2,5],[5,4]].forEach(([tx,ty]) => {
+      ctx.beginPath(); ctx.arc(tx*s,ty*s,2.5*s,0,Math.PI*2); ctx.fill();
+    });
+    // Glow
+    ctx.strokeStyle = 'rgba(255,200,0,0.6)';
+    ctx.lineWidth = 2*s;
+    ctx.beginPath(); ctx.arc(0, 0, 16*s, 0, Math.PI*2); ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawBuildings() {
+    const s = SCALE();
+    const bgs = [
+      {x:0,w:80,h:180,c:'#1a0a1a'},{x:90,w:60,h:140,c:'#0a1a2a'},
+      {x:160,w:100,h:200,c:'#1a1a0a'},{x:270,w:70,h:160,c:'#0a0a1a'},
+      {x:350,w:90,h:190,c:'#1a0a0a'},{x:450,w:65,h:145,c:'#0a1a0a'},
+      {x:525,w:110,h:210,c:'#1a0a1a'},{x:645,w:75,h:170,c:'#0a0a2a'},
+      {x:730,w:85,h:195,c:'#1a1a0a'},{x:825,w:95,h:155,c:'#0a1a1a'},
+    ];
+    bgs.forEach(b => {
+      const bx = ((b.x - bgOffset * 0.3) % (W() + 120) + W() + 120) % (W() + 120) - 60;
+      ctx.fillStyle = b.c;
+      ctx.fillRect(bx, GROUND() - b.h*s, b.w*s, b.h*s);
+      // Windows
+      ctx.fillStyle = 'rgba(255,220,100,0.5)';
+      for (let wy = 20; wy < b.h - 20; wy += 25) {
+        for (let wx = 10; wx < b.w - 10; wx += 18) {
+          if (Math.sin(b.x + wy + wx) > 0.2) {
+            ctx.fillRect(bx + wx*s, GROUND() - b.h*s + wy*s, 8*s, 12*s);
+          }
+        }
+      }
+    });
+  }
+
+  function drawGround() {
+    const s = SCALE();
+    // Road
+    ctx.fillStyle = '#1a1218';
+    ctx.fillRect(0, GROUND(), W(), H() - GROUND());
+    // Road markings
+    ctx.strokeStyle = 'rgba(255,200,0,0.3)';
+    ctx.lineWidth = 3*s;
+    ctx.setLineDash([40*s, 30*s]);
+    ctx.lineDashOffset = -(bgOffset % 70) * s;
+    ctx.beginPath();
+    ctx.moveTo(0, GROUND() + (H()-GROUND())*0.5);
+    ctx.lineTo(W(), GROUND() + (H()-GROUND())*0.5);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    // Curb
+    ctx.fillStyle = '#2a1a2a';
+    ctx.fillRect(0, GROUND(), W(), 5*s);
+    ctx.fillStyle = '#cc0022';
+    ctx.fillRect(0, GROUND(), W(), 2*s);
+  }
+
+  function drawStars() {
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    stars.forEach(st => {
+      const size = Math.sin(frame * 0.03 + st.phase) * 0.5 + 1;
+      ctx.fillRect(st.x, st.y, size, size);
+    });
+  }
+
+  // Sewer grate in distance
+  function drawBg() {
+    ctx.fillStyle = '#0a0404';
+    ctx.fillRect(0, 0, W(), H());
+    drawStars();
+    // NY skyline silhouette
+    ctx.fillStyle = 'rgba(30,10,10,0.8)';
+    drawBuildings();
+    // Sewer steam
+    if (frame % 180 < 60) {
+      const alpha = Math.sin((frame % 60) / 60 * Math.PI) * 0.2;
+      ctx.fillStyle = `rgba(150,150,150,${alpha})`;
+      ctx.beginPath();
+      ctx.ellipse(W()*0.7, GROUND(), 20*SCALE(), 30*SCALE(), 0, 0, Math.PI*2);
+      ctx.fill();
+    }
+  }
+
+  function initGame() {
+    mikey = {
+      x: 120 * SCALE(),
+      y: GROUND(),
+      vy: 0,
+      jumping: false,
+      jumpCount: 0,
+    };
+    obstacles = [];
+    pizzas = [];
+    stars = Array.from({length: 60}, () => ({
+      x: Math.random() * 900,
+      y: Math.random() * GROUND() * 0.6,
+      phase: Math.random() * Math.PI * 2
+    }));
+    score = 0;
+    frame = 0;
+    speed = 5;
+    spawnTimer = 0;
+    bgOffset = 0;
+  }
+
+  function jump() {
+    if (state !== 'playing') return;
+    if (mikey.jumpCount < 2) {
+      playJump();
+      mikey.vy = -18 * SCALE();
+      mikey.jumping = true;
+      mikey.jumpCount++;
+    }
+  }
+
+  function startGame() {
+    initGame();
+    state = 'playing';
+    overlay.style.display = 'none';
+    loop();
+  }
+
+  function gameOver() {
+    state = 'dead';
+    playDead();
+    if (score > hi) { hi = score; hiEl.textContent = 'HI: ' + hi; }
+    overlay.style.display = 'flex';
+    msgEl.textContent = 'Score: ' + score + ' 🍕 — Tap to try again!';
+    startBtn.textContent = '🛹 RETRY!';
+  }
+
+  let raf = null;
+  function loop() {
+    if (state !== 'playing') return;
+    raf = requestAnimationFrame(loop);
+    frame++;
+    speed = 5 + Math.floor(score / 8) * 0.5;
+
+    // Physics
+    mikey.vy += 0.9 * SCALE();
+    mikey.y += mikey.vy;
+    if (mikey.y >= GROUND()) {
+      mikey.y = GROUND();
+      mikey.vy = 0;
+      mikey.jumping = false;
+      mikey.jumpCount = 0;
+    }
+
+    bgOffset += speed * 0.5;
+
+    // Spawn obstacles
+    spawnTimer--;
+    if (spawnTimer <= 0) {
+      const gap = Math.max(60, 120 - score * 2);
+      spawnTimer = gap + Math.random() * 60;
+      obstacles.push({x: W() + 30, type: Math.random() < 0.5 ? 'ninja' : 'trash'});
+    }
+
+    // Spawn pizzas
+    if (Math.random() < 0.008) {
+      pizzas.push({
+        x: W() + 20,
+        y: GROUND() - (50 + Math.random() * 80) * SCALE()
+      });
+    }
+
+    // Move obstacles
+    obstacles.forEach(o => o.x -= speed * SCALE());
+    obstacles = obstacles.filter(o => o.x > -60);
+
+    // Move pizzas
+    pizzas.forEach(p => p.x -= speed * SCALE());
+    pizzas = pizzas.filter(p => p.x > -30);
+
+    // Collision — obstacles (tight hitbox)
+    const s = SCALE();
+    const mx = mikey.x, my = mikey.y;
+    for (const o of obstacles) {
+      if (Math.abs(o.x - mx) < 18*s && my - GROUND() > -45*s) {
+        gameOver(); return;
+      }
+    }
+
+    // Collect pizzas
+    pizzas = pizzas.filter(p => {
+      if (Math.abs(p.x - mx) < 20*s && Math.abs(p.y - my) < 30*s) {
+        score += 10;
+        scoreEl.textContent = score;
+        playPizza();
+        return false;
+      }
+      return true;
+    });
+
+    // Survival score
+    if (frame % 30 === 0) { score += 1; scoreEl.textContent = score; }
+
+    // Draw
+    drawBg();
+    drawGround();
+    obstacles.forEach(drawObstacle);
+    pizzas.forEach(drawPizza);
+    drawMikey(mikey.x, mikey.y, mikey.jumping);
+
+    // Speed indicator
+    ctx.fillStyle = 'rgba(255,106,0,0.4)';
+    ctx.font = `${12*s}px "Bebas Neue", sans-serif`;
+    ctx.fillText('SPEED: ' + speed.toFixed(1), 10*s, 20*s);
+  }
+
+  // Controls
+  startBtn.addEventListener('click', startGame);
+  startBtn.addEventListener('touchstart', e => { e.preventDefault(); startGame(); });
+  jumpBtn.addEventListener('click', jump);
+  jumpBtn.addEventListener('touchstart', e => { e.preventDefault(); jump(); });
+  document.addEventListener('keydown', e => {
+    if (e.code === 'Space' || e.code === 'ArrowUp') {
+      e.preventDefault();
+      if (state === 'idle' || state === 'dead') startGame();
+      else jump();
+    }
+  });
+  canvas.addEventListener('click', () => { if (state === 'playing') jump(); });
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); if (state === 'playing') jump(); });
+
+  // Initial draw
+  resize();
+  initGame();
+  drawBg();
+  drawGround();
+  drawMikey(120 * SCALE(), GROUND(), false);
+
+})();
+</script>
+
 <footer>
   Built for <span>Hodder</span> · Powered by Turtle Power · TMNT Commander 2026<br>
-  <span style="font-size:0.75rem; color:rgba(212,245,212,0.2); font-family:'Rajdhani',sans-serif; margin-top:0.5rem; display:block;">Prices are estimates. Verify live stock before purchase. Links open store searches.</span>
+  <span style="font-size:0.75rem; color:rgba(245,212,212,0.2); font-family:'Rajdhani',sans-serif; margin-top:0.5rem; display:block;">Prices are estimates. Verify live stock before purchase. Links open store searches.</span>
 </footer>
 
 
