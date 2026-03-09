@@ -1295,7 +1295,7 @@
     <canvas id="gameCanvas" style="display:block;width:100%;image-rendering:pixelated;"></canvas>
 
     <!-- OVERLAY -->
-    <div id="g-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,4,4,0.85);z-index:10;">
+    <div id="g-overlay" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,4,4,0.85);z-index:10;cursor:pointer;">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,8vw,4rem);color:#ff1a3c;text-shadow:0 0 30px rgba(255,0,40,0.8);letter-spacing:0.1em;">COWABUNGA!</div>
       <div id="g-msg" style="font-family:'Permanent Marker',cursive;color:#ff6a00;font-size:1.2rem;margin:0.5rem 0 2rem;">Tap to start skating</div>
       <button id="g-startbtn" style="font-family:'Bebas Neue',sans-serif;font-size:2rem;padding:1rem 3rem;background:#cc0022;color:white;border:none;border-radius:8px;cursor:pointer;letter-spacing:0.15em;box-shadow:0 0 30px rgba(200,0,30,0.6);transition:transform 0.1s;" ontouchstart="this.style.transform='scale(0.95)'" ontouchend="this.style.transform='scale(1)'">
@@ -1749,6 +1749,8 @@
   // Controls
   startBtn.addEventListener('click', startGame);
   startBtn.addEventListener('touchstart', e => { e.preventDefault(); startGame(); });
+  overlay.addEventListener('click', startGame);
+  overlay.addEventListener('touchstart', e => { e.preventDefault(); startGame(); });
   jumpBtn.addEventListener('click', jump);
   jumpBtn.addEventListener('touchstart', e => { e.preventDefault(); jump(); });
   document.addEventListener('keydown', e => {
